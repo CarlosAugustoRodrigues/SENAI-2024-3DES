@@ -32,3 +32,5 @@ Dados das Tabelas
 	- hora;
 	- status;
 	- id_usuario;
+
+	
