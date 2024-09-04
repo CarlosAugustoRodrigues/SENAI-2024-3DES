@@ -8,7 +8,7 @@ $gray-3: rgb(120, 120, 120);
 $gray-4: rgb(96, 96, 96);
 $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
-$black-opacity: rgba(0, 0, 0, 0.4);
+$black-opacity: rgba(0, 0, 0, 0.7);
 $blue: rgb(0, 133, 255);
 $green-1: rgb(0, 255, 0);
 $green-2: rgb(30, 90, 20);
@@ -47,4 +47,10 @@ $red: rgb(255, 0, 0);
     justify-content: $justify_content;
     align-items: $align_items;
     flex-direction: $flex_direction;
+}
+
+// OUTROS
+@mixin padding($inline, $block) {
+    padding-inline: $inline;
+    padding-block: $block;
 }

@@ -1,15 +1,86 @@
 @import '../../configuracoes/variaveis.scss';
 
 main {
-    width: 100%;
-    height: 90vh;
-    padding-inline: 10%;
-    padding-block: 3%;
-
-    background: $gray-1;
-    @include flex(flex-start, center, column);
+    @include padding(10%, 3%);
+    @include flex-gap(flex-start, center, column, 50px);
 
     h1 {
         font-size: 3rem;
     }
+
+    .div-principal {
+        @include flex-gap(center, center, row, 24px);
+        height: 500px;
+        width: 100%;
+        position: relative;
+
+        .cards-destaque-pri {
+            height: 100%;
+            width: 500px;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+            }
+
+            .infos-ocorrencia {
+                border-radius: 8px;
+                width: 95%;
+                height: auto;
+                background: $black-opacity;
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: $gray-1;
+                @include padding(10px, 10px);
+
+                div {
+                    width: 100%;
+                    text-align: justify;
+                    font-size: 14px;
+                }
+
+                div:last-child {    
+                    @include flex(space-between, center, row);
+                }
+            }
+        }
+
+        .div-cards {
+            width: 750px;
+            height: 100%;
+            @include flex(space-between, center, column);
+
+            .cards-destaque-sec {
+                @include flex-gap(center, center, row, 12px);
+
+                img {
+                    width: 230px;
+                    height: 230px;
+                    border-radius: 8px;
+                }
+
+                .infos-ocorrencia {
+                    height: 100%;
+                    @include flex(space-between, flex-start, column);
+                    @include padding(10px, 10px);
+
+                    div {
+                        width: 100%;
+                        text-align: justify;
+                        font-size: 14px;
+                    }
+
+                    div:last-child {
+                        @include flex(space-between, center, row);
+                    }
+                }
+            }
+        }
+    }
+
+    
 }
