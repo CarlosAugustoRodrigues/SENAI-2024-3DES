@@ -27,9 +27,14 @@ public class UsuarioComum {
     @Column(name = "role", nullable = false)
     private Role role;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String senha;
+
+    @Column(name = "ocorrencia", nullable = false)
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ocorrencias", referencedColumnName = "id")
     @JsonIgnore
     private Set<Ocorrencia> ListaOcorrencia = new HashSet<>();
 }

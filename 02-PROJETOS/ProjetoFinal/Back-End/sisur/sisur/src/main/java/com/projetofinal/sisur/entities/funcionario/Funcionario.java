@@ -30,4 +30,10 @@ public class Funcionario {
 
     @Column(name = "role", nullable = false)
     private Role role;
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String senha;
 }

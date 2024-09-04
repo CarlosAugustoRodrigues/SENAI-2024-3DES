@@ -56,9 +56,8 @@ public class Ocorrencia {
     @Column(name = "categoria", nullable = false)
     private Categoria categoria;
 
-    @Column(nullable = false)
     @ManyToOne
-    @JoinColumn(name = "usuario", referencedColumnName = "id")
+    @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private UsuarioComum usuario;
 }
