@@ -33,9 +33,6 @@ main > div > a {
   align-items: center;
   gap: 3.125rem;
 }
-.div-form > span a {
-  text-decoration: underline;
-}
 .div-form h3 {
   text-transform: uppercase;
   font-size: 1.875rem;
@@ -48,21 +45,32 @@ main > div > a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3.125rem;
+}
+.div-form form .div-input {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
 }
-.div-form form div:not(:nth-child(3)) {
+.div-form form .div-input div {
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
-.div-form form div:not(:nth-child(3)) label i {
+.div-form form .div-input div label i {
   font-size: 1.5rem;
 }
-.div-form form div:not(:nth-child(3)) input {
+.div-form form .div-input div input {
   width: 85%;
+  height: auto;
   background: none;
   border: none;
   border-bottom: 2px solid rgb(255, 255, 255);
@@ -71,29 +79,33 @@ main > div > a {
   padding-inline: 0;
   padding-block: 10px;
 }
-.div-form form div:not(:nth-child(3)) input::-moz-placeholder {
+.div-form form .div-input div input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
-.div-form form div:not(:nth-child(3)) input::placeholder {
+.div-form form .div-input div input::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
-.div-form form div:not(:nth-child(3)) input.error {
+.div-form form .div-input div input.error {
   border-bottom: 2px solid rgb(255, 0, 0);
 }
-.div-form form div:nth-child(3) {
+.div-form form > div:last-child {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
 }
-.div-form form div:nth-child(3) button {
-  background: none;
+.div-form form > div:last-child button {
+  width: 100px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.6);
   border: none;
+  border-radius: 0.5rem;
   color: rgb(255, 255, 255);
   font-size: 1rem;
   font-weight: 700;
+  cursor: pointer;
 }
-.div-form form div:nth-child(3) span {
+.div-form form > div:last-child span {
   font-size: 0.75rem;
 }/*# sourceMappingURL=style.css.map */
