@@ -5,23 +5,10 @@ main {
   align-items: center;
   flex-direction: row;
 }
-main > div {
-  height: 430px;
-  width: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex-direction: column;
-}
-main > div > a {
-  text-decoration: underline;
-  color: rgb(0, 133, 255);
-  font-size: 1rem;
-}
 
 .div-form {
-  height: 100%;
-  width: 100%;
+  width: 400px;
+  height: auto;
   background: rgb(120, 120, 120);
   border-radius: 0.5rem;
   color: rgb(255, 255, 255);
@@ -30,6 +17,8 @@ main > div > a {
   justify-content: center;
   align-items: center;
   gap: 3.125rem;
+  padding-inline: 20px;
+  padding-block: 20px;
 }
 .div-form h3 {
   text-transform: uppercase;
@@ -77,7 +66,7 @@ main > div > a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 .div-input div {
   width: 100%;

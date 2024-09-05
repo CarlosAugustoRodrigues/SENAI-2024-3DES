@@ -1,15 +1,14 @@
 @import "../../configuracoes/variaveis.scss";
 
 main {
-  @include padding(10%, 3%);
   @include flex(center, center, row);
 
-  >div {
+  > div {
     height: 430px;
     width: 350px;
     @include flex(center, flex-end, column);
 
-    >a {
+    > a {
       text-decoration: underline;
       color: $blue;
       font-size: 1rem;
@@ -21,7 +20,7 @@ main {
   height: 100%;
   width: 100%;
   background: $gray-3;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   color: $white;
   @include flex-gap(center, center, column, 3.125rem);
 
@@ -36,50 +35,15 @@ main {
     height: auto;
     @include flex-gap(center, center, column, 3.125rem);
 
-    .div-input {
-      width: 100%;
-      height: auto;
-      @include flex-gap(center, center, column, 1.5rem);
-
-      div {
-        width: 100%;
-        height: auto;
-        @include flex-gap(center, center, row, .5rem);
-
-        label i {
-          font-size: 1.5rem;
-        }
-
-        input {
-          width: 85%;
-          height: auto;
-          background: none;
-          border: none;
-          border-bottom: 2px solid $white;
-          outline: none;
-          color: $white;
-          @include padding(0, 10px);
-
-          &::placeholder {
-            color: $white-opacity;
-          }
-        }
-
-        input.error {
-          border-bottom: 2px solid $red;
-        }
-      }
-    }
-
-    >div:last-child {
-      @include flex-gap(center, center, column, .75rem);
+    > div:last-child {
+      @include flex-gap(center, center, column, 0.75rem);
 
       button {
         width: 100px;
         height: 40px;
         background: $black-opacity;
         border: none;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         color: $white;
         font-size: 1rem;
         font-weight: 700;
@@ -87,10 +51,49 @@ main {
       }
 
       span {
-        font-size: .75rem;
+        font-size: 0.75rem;
+
+        a {
+          text-decoration: underline;
+        }
       }
     }
   }
+}
 
+.div-input {
+  width: 100%;
+  height: auto;
+  @include flex-gap(center, center, column, 1.5rem);
 
+  div {
+    width: 100%;
+    height: auto;
+    @include flex-gap(center, center, row, 0.5rem);
+
+    label i {
+      font-size: 1.5rem;
+    }
+
+    input {
+      width: 85%;
+      height: auto;
+      background: none;
+      border: none;
+      border-bottom: 2px solid $white;
+      outline: none;
+      color: $white;
+      font-size: 1.1rem;
+      @include padding(0, 10px);
+
+      &::placeholder {
+        color: $white-opacity;
+        font-size: 0.9rem;
+      }
+    }
+
+    input.error {
+      border-bottom: 2px solid $red;
+    }
+  }
 }
