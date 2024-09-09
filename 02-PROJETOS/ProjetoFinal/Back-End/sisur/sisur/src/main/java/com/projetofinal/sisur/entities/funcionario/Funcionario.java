@@ -1,5 +1,6 @@
 package com.projetofinal.sisur.entities.funcionario;
 
+import com.projetofinal.sisur.dtos.funcionario.FuncionarioReqRecDTO;
 import com.projetofinal.sisur.enums.Role;
 import com.projetofinal.sisur.enums.Setores;
 import jakarta.persistence.*;
@@ -36,4 +37,12 @@ public class Funcionario {
 
     @Column(name = "password", nullable = false)
     private String senha;
+
+    public Funcionario(FuncionarioReqRecDTO data) {
+        setNome(data.nome());
+        setSetor(data.setor());
+        setRole(data.role());
+        setEmail(data.email());
+        setSenha(data.senha());
+    }
 }

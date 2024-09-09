@@ -1,6 +1,7 @@
 package com.projetofinal.sisur.entities.ocorrencia;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projetofinal.sisur.dtos.ocorrencia.OcorrenciaReqRecDTO;
 import com.projetofinal.sisur.entities.usuario_comum.UsuarioComum;
 import com.projetofinal.sisur.enums.Categoria;
 import com.projetofinal.sisur.enums.Status;
@@ -42,7 +43,7 @@ public class Ocorrencia {
     private Byte imagem;
 
     @Column(name = "tipo_imagem")
-    private String tipo_imagem;
+    private String tipoImagem;
 
     @Column(name = "hora", nullable = false)
     private LocalTime hora;
@@ -60,4 +61,15 @@ public class Ocorrencia {
     @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private UsuarioComum usuario;
+
+    public  Ocorrencia(OcorrenciaReqRecDTO data) {
+        setDescricao(data.descricao());
+        setRua(data.rua());
+        setBairro(data.bairro());
+        setCep(data.cep());
+        setImagem(data.imagem());
+        setTipoImagem(data.tipoImagem());
+        setCategoria(data.categoria());
+        setUsuario(data.usuario());
+    }
 }
