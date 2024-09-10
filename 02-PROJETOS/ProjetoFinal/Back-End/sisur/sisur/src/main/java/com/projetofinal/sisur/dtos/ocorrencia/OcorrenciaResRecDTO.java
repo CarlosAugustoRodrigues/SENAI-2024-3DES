@@ -2,8 +2,6 @@ package com.projetofinal.sisur.dtos.ocorrencia;
 
 import com.projetofinal.sisur.entities.ocorrencia.Ocorrencia;
 import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
-import com.projetofinal.sisur.enums.Categoria;
-import com.projetofinal.sisur.enums.Status;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,8 +17,8 @@ public record OcorrenciaResRecDTO(
         String tipoImagem,
         LocalTime hora,
         LocalDate data,
-        Status status,
-        Categoria categoria,
+        String status,
+        String categoria,
         UsuarioComum usuario
 ) {
 

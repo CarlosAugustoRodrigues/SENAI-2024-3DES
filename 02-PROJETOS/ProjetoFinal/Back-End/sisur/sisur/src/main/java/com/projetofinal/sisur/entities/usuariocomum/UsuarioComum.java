@@ -1,9 +1,8 @@
 package com.projetofinal.sisur.entities.usuariocomum;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.projetofinal.sisur.dtos.usuario_comum.UsuarioComumReqRecDTO;
+import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumReqRecDTO;
 import com.projetofinal.sisur.entities.ocorrencia.Ocorrencia;
-import com.projetofinal.sisur.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 

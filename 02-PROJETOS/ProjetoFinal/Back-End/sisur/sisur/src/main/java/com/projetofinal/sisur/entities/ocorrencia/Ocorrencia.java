@@ -3,8 +3,6 @@ package com.projetofinal.sisur.entities.ocorrencia;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetofinal.sisur.dtos.ocorrencia.OcorrenciaReqRecDTO;
 import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
-import com.projetofinal.sisur.enums.Categoria;
-import com.projetofinal.sisur.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,10 +50,10 @@ public class Ocorrencia {
     private LocalDate data;
 
     @Column(name = "status", nullable = false)
-    private Status status;
+    private String status;
 
     @Column(name = "categoria", nullable = false)
-    private Categoria categoria;
+    private String categoria;
 
     @ManyToOne
     @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
@@ -71,7 +69,8 @@ public class Ocorrencia {
         setTipoImagem(data.tipoImagem());
         setHora(LocalTime.now());
         setData(LocalDate.now());
-        setCategoria(data.categoria());
+        setStatus("Pendente");
+        setCategoria("Qualquer");
         setUsuario(data.usuario());
     }
 }

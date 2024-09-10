@@ -1,9 +1,7 @@
-package com.projetofinal.sisur.dtos.usuario_comum;
+package com.projetofinal.sisur.dtos.usuariocomum;
 
 import com.projetofinal.sisur.entities.ocorrencia.Ocorrencia;
 import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
-import com.projetofinal.sisur.enums.Role;
-import com.projetofinal.sisur.services.usuariocomum.UsuarioComumService;
 
 import java.util.Set;
 import java.util.UUID;

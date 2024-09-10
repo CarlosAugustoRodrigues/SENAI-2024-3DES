@@ -1,6 +1,4 @@
-package com.projetofinal.sisur.dtos.usuario_comum;
-
-import com.projetofinal.sisur.enums.Role;
+package com.projetofinal.sisur.dtos.usuariocomum;
 
 public record UsuarioComumReqRecDTO(
         String nome,
