@@ -1,7 +1,7 @@
 package com.projetofinal.sisur.dtos.ocorrencia;
 
 import com.projetofinal.sisur.entities.ocorrencia.Ocorrencia;
-import com.projetofinal.sisur.entities.usuario_comum.UsuarioComum;
+import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
 import com.projetofinal.sisur.enums.Categoria;
 import com.projetofinal.sisur.enums.Status;
 

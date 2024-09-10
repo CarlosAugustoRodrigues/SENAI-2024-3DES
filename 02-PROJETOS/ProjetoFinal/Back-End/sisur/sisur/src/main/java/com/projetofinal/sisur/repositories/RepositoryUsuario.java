@@ -1,6 +1,6 @@
 package com.projetofinal.sisur.repositories;
 
-import com.projetofinal.sisur.entities.usuario_comum.UsuarioComum;
+import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.projetofinal.sisur.entities.usuario_comum;
+package com.projetofinal.sisur.entities.usuariocomum;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetofinal.sisur.dtos.usuario_comum.UsuarioComumReqRecDTO;
@@ -26,7 +26,7 @@ public class UsuarioComum {
     private String nome;
 
     @Column(name = "role", nullable = false)
-    private Role role;
+    private String role;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -41,7 +41,7 @@ public class UsuarioComum {
 
     public UsuarioComum(UsuarioComumReqRecDTO data) {
         setNome(data.nome());
-        setRole(data.role());
+        setRole("Role_User");
         setEmail(data.email());
         setSenha(data.senha());
     }

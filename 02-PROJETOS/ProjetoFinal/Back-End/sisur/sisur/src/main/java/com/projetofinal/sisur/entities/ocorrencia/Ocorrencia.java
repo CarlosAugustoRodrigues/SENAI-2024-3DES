@@ -2,7 +2,7 @@ package com.projetofinal.sisur.entities.ocorrencia;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetofinal.sisur.dtos.ocorrencia.OcorrenciaReqRecDTO;
-import com.projetofinal.sisur.entities.usuario_comum.UsuarioComum;
+import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
 import com.projetofinal.sisur.enums.Categoria;
 import com.projetofinal.sisur.enums.Status;
 import jakarta.persistence.*;
@@ -69,6 +69,8 @@ public class Ocorrencia {
         setCep(data.cep());
         setImagem(data.imagem());
         setTipoImagem(data.tipoImagem());
+        setHora(LocalTime.now());
+        setData(LocalDate.now());
         setCategoria(data.categoria());
         setUsuario(data.usuario());
     }
