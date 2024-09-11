@@ -2,6 +2,7 @@ package com.projetofinal.sisur.services.usuariocomum;
 
 import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumNomeEmailReqRecDTO;
 import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumReqRecDTO;
+import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumResRecDTO;
 import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumSenhaReqRecDTO;
 import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
 import com.projetofinal.sisur.repositories.RepositoryUsuario;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,11 +22,26 @@ public class UsuarioComumService {
         this.repositoryUsuario = repositoryUsuario;
     }
 
+    public ResponseEntity<List<UsuarioComumResRecDTO>> readAll() {
+        List<UsuarioComumResRecDTO> listaUsuario = repositoryUsuario
+                .findAll()
+                .stream()
+                .map(UsuarioComumResRecDTO::new)
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(listaUsuario);
+    }
+
     // REGISTRAR CONTA
-    public ResponseEntity<UsuarioComum> createUsuario(UsuarioComumReqRecDTO data) {
-        var novoUsuario = new UsuarioComum(data);
-        repositoryUsuario.save(novoUsuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
+    public ResponseEntity<Object> createUsuario(UsuarioComumReqRecDTO data) {
+        Optional<UsuarioComum> usuario0 = repositoryUsuario.findByEmail(data.email());
+
+        if (usuario0.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("E-mail já cadastrado!");
+        }
+        var usuario = new UsuarioComum(data);
+        repositoryUsuario.save(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
 
     // ALTERAR DADOS(NOME E EMAIL) - QUANDO ESTIVER LOGADO NO SISTEMA

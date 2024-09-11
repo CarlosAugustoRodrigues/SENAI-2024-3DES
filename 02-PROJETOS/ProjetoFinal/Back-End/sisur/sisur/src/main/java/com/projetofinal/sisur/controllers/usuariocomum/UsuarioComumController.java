@@ -2,6 +2,7 @@ package com.projetofinal.sisur.controllers.usuariocomum;
 
 import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumNomeEmailReqRecDTO;
 import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumReqRecDTO;
+import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumResRecDTO;
 import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumSenhaReqRecDTO;
 import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
 import com.projetofinal.sisur.services.usuariocomum.UsuarioComumService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,8 +23,13 @@ public class UsuarioComumController {
         this.usuarioComumService = usuarioComumService;
     }
 
+    @GetMapping("/usuario")
+    public ResponseEntity<List<UsuarioComumResRecDTO>> readAll() {
+        return usuarioComumService.readAll();
+    }
+
     @PostMapping("/usuario")
-    public ResponseEntity<UsuarioComum> createUsuario(@RequestBody @Validated UsuarioComumReqRecDTO data) {
+    public ResponseEntity createUsuario(@RequestBody @Validated UsuarioComumReqRecDTO data) {
         return usuarioComumService.createUsuario(data);
     }
 

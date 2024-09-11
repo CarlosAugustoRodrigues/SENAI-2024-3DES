@@ -38,7 +38,7 @@ public class Ocorrencia {
     private String cep;
 
     @Column(name = "imagem")
-    private Byte imagem;
+    private String imagem;
 
     @Column(name = "tipo_imagem")
     private String tipoImagem;
@@ -71,6 +71,5 @@ public class Ocorrencia {
         setData(LocalDate.now());
         setStatus("Pendente");
         setCategoria("Qualquer");
-        setUsuario(data.usuario());
     }
 }

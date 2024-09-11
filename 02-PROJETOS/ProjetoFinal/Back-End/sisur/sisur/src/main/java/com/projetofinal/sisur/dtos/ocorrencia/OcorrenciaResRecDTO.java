@@ -13,7 +13,7 @@ public record OcorrenciaResRecDTO(
         String rua,
         String bairro,
         String cep,
-        Byte imagem,
+        String imagem,
         String tipoImagem,
         LocalTime hora,
         LocalDate data,

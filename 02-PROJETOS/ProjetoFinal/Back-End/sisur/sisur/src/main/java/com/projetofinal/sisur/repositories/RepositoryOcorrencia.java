@@ -7,4 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface RepositoryOcorrencia extends JpaRepository<Ocorrencia, UUID> {
+    Optional<Ocorrencia> findByCategoria(String categoria);
 }

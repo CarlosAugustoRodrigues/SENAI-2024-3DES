@@ -1,8 +1,6 @@
 package com.projetofinal.sisur.entities.funcionario;
 
 import com.projetofinal.sisur.dtos.funcionario.FuncionarioReqRecDTO;
-import com.projetofinal.sisur.enums.Role;
-import com.projetofinal.sisur.enums.Setores;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,10 +25,10 @@ public class Funcionario {
     private String nome;
 
     @Column(name = "setor", nullable = false)
-    private Setores setor;
+    private String setor;
 
     @Column(name = "role", nullable = false)
-    private Role role;
+    private String role;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -40,8 +38,8 @@ public class Funcionario {
 
     public Funcionario(FuncionarioReqRecDTO data) {
         setNome(data.nome());
-        setSetor(data.setor());
-        setRole(data.role());
+        setSetor("Qualquer");
+        setRole("Role_Funcionario");
         setEmail(data.email());
         setSenha(data.senha());
     }

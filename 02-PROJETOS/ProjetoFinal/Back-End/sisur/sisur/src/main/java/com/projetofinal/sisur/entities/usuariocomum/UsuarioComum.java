@@ -34,7 +34,7 @@ public class UsuarioComum {
     private String senha;
 
     @Column(name = "ocorrencia", nullable = false)
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Ocorrencia> ListaOcorrencia = new HashSet<>();
 
