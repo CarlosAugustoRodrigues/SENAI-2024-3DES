@@ -57,7 +57,7 @@ public class LoginSerivice {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionário não encontrado!");
         }
 
-        if (data.email() == funcionario.get().getUsername() && passwordEncoder.matches(data.senha(), funcionario.get().getPassword())) {
+        if (data.email().equals(funcionario.get().getEmail()) && passwordEncoder.matches(data.senha(), funcionario.get().getPassword())) {
             String token = tokenSerice.generateTokenFuncionario(funcionario.get());
 
             return ResponseEntity.status(HttpStatus.OK).body(new LoginFuncionarioResponse(funcionario.get(), token));

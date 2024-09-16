@@ -15,8 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import senai.projetofinal.sisur.config.security.customuserdetailsservice.CustomUserDetailsServiceUsuario;
 import senai.projetofinal.sisur.config.security.securityfilter.SecurityFilterUsuario;
 
-@Configuration
-@EnableWebSecurity
 public class SecurityConfigUsuario {
 
     private CustomUserDetailsServiceUsuario userDetailsServiceUsuario;

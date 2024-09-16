@@ -25,6 +25,7 @@ public class FuncionarioService {
 
     public ResponseEntity<Object> create(FuncionarioRequest data) {
         Optional<Funcionario> funcionario = funcionarioRepository.findByEmail(data.email());
+        System.out.println(data);
 
         if (funcionario.isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("E-mail já cadastrado!");
