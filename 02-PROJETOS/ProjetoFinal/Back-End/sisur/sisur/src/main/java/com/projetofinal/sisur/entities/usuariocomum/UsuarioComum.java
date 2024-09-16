@@ -1,7 +1,6 @@
 package com.projetofinal.sisur.entities.usuariocomum;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.projetofinal.sisur.dtos.usuariocomum.UsuarioComumReqRecDTO;
 import com.projetofinal.sisur.entities.ocorrencia.Ocorrencia;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,11 +36,4 @@ public class UsuarioComum {
     @OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Ocorrencia> ListaOcorrencia = new HashSet<>();
-
-    public UsuarioComum(UsuarioComumReqRecDTO data) {
-        setNome(data.nome());
-        setRole("Role_User");
-        setEmail(data.email());
-        setSenha(data.senha());
-    }
 }

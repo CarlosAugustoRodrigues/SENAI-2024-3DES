@@ -1,7 +1,6 @@
 package com.projetofinal.sisur.entities.ocorrencia;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.projetofinal.sisur.dtos.ocorrencia.OcorrenciaReqRecDTO;
 import com.projetofinal.sisur.entities.usuariocomum.UsuarioComum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -59,17 +58,4 @@ public class Ocorrencia {
     @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private UsuarioComum usuario;
-
-    public  Ocorrencia(OcorrenciaReqRecDTO data) {
-        setDescricao(data.descricao());
-        setRua(data.rua());
-        setBairro(data.bairro());
-        setCep(data.cep());
-        setImagem(data.imagem());
-        setTipoImagem(data.tipoImagem());
-        setHora(LocalTime.now());
-        setData(LocalDate.now());
-        setStatus("Pendente");
-        setCategoria("Qualquer");
-    }
 }

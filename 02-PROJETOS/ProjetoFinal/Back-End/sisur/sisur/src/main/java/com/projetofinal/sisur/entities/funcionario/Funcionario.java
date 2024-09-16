@@ -1,6 +1,5 @@
 package com.projetofinal.sisur.entities.funcionario;
 
-import com.projetofinal.sisur.dtos.funcionario.FuncionarioReqRecDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,12 +34,4 @@ public class Funcionario {
 
     @Column(name = "password", nullable = false)
     private String senha;
-
-    public Funcionario(FuncionarioReqRecDTO data) {
-        setNome(data.nome());
-        setSetor("Qualquer");
-        setRole("Role_Funcionario");
-        setEmail(data.email());
-        setSenha(data.senha());
-    }
 }
