@@ -26,6 +26,7 @@ public class Token {
             String token = JWT.create()
                     .withIssuer("sisur")
                     .withSubject(usuario.getEmail())
+                    .withClaim("type", "usuario")
                     .withExpiresAt(this.generateExpirationDate())
                     .sign(algorithm);
             return token;
@@ -42,6 +43,7 @@ public class Token {
             String token = JWT.create()
                     .withIssuer("sisur")
                     .withSubject(funcionario.getEmail())
+                    .withClaim("type", "funcionario")
                     .withExpiresAt(this.generateExpirationDate())
                     .sign(algorithm);
             return token;
@@ -59,6 +61,20 @@ public class Token {
                     .build()
                     .verify(token)
                     .getSubject();
+        } catch (JWTVerificationException exception) {
+            return null;
+        }
+    }
+
+    public String getTokenType(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer("sisur")
+                    .build()
+                    .verify(token)
+                    .getClaim("type")
+                    .asString();
         } catch (JWTVerificationException exception) {
             return null;
         }

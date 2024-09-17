@@ -1,5 +1,6 @@
 package senai.projetofinal.sisur.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,6 @@ public class Ocorrencia {
     private String rua;
     private String bairro;
     private String cep;
-    private String imagem;
 
     @CreationTimestamp
     private Instant timestamp;
@@ -50,7 +50,6 @@ public class Ocorrencia {
         setRua(data.rua());
         setBairro(data.bairro());
         setCep(data.cep());
-        setImagem(data.imagem());
         converterSetor(data.setor());
     }
 }

@@ -12,7 +12,6 @@ public record OcorrenciaResponse(
         String rua,
         String bairro,
         String cep,
-        String imagem,
         Instant timestamp,
         Setor setor,
         Usuario usuario
@@ -25,7 +24,6 @@ public record OcorrenciaResponse(
                 data.getRua(),
                 data.getBairro(),
                 data.getCep(),
-                data.getImagem(),
                 data.getTimestamp(),
                 data.getSetor(),
                 data.getUsuario()

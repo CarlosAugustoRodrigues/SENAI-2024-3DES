@@ -1,9 +1,9 @@
 package senai.projetofinal.sisur.config;
 
-import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import senai.projetofinal.sisur.entities.Funcionario;
 import senai.projetofinal.sisur.enums.Role;
 import senai.projetofinal.sisur.repositories.FuncionarioRepository;
