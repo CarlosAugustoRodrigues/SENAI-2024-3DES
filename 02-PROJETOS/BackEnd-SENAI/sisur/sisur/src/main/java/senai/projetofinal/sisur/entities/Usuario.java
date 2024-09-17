@@ -1,5 +1,6 @@
 package senai.projetofinal.sisur.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class Usuario implements UserDetails {
     private String senha;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Ocorrencia> ocorrencias = new HashSet<>();
 
 

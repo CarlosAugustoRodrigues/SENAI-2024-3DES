@@ -5,23 +5,30 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import senai.projetofinal.sisur.dtos.funcionario.FuncionarioRequest;
 import senai.projetofinal.sisur.dtos.funcionario.FuncionarioRequestSenha;
+import senai.projetofinal.sisur.dtos.funcionario.FuncionarioResponse;
 import senai.projetofinal.sisur.dtos.funcionario.LoginFuncionarioRequest;
 import senai.projetofinal.sisur.service.funcionario.FuncionarioService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/sisur")
 public class FuncionarioControllers {
 
-    FuncionarioService funcionarioService;
+    private final FuncionarioService funcionarioService;
 
     public FuncionarioControllers(FuncionarioService funcionarioService) {
         this.funcionarioService = funcionarioService;
     }
 
+    @GetMapping("/funcionario")
+    public ResponseEntity<List<FuncionarioResponse>> readAll() {
+        return funcionarioService.readAll();
+    }
+
     @PostMapping("/funcionario/login")
-    public ResponseEntity<?> login(@RequestBody @Validated LoginFuncionarioRequest data) {
+    public ResponseEntity login(@RequestBody @Validated LoginFuncionarioRequest data) {
         return funcionarioService.loginFuncionario(data);
     }
 

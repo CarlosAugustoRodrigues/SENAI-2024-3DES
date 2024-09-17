@@ -9,13 +9,12 @@ import senai.projetofinal.sisur.entities.Ocorrencia;
 import senai.projetofinal.sisur.service.ocorrencia.OcorrenciaService;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/sisur")
 public class OcorrenciaControllers {
 
-    OcorrenciaService ocorrenciaService;
+    private final OcorrenciaService ocorrenciaService;
 
     public OcorrenciaControllers(OcorrenciaService ocorrenciaService) {
         this.ocorrenciaService = ocorrenciaService;

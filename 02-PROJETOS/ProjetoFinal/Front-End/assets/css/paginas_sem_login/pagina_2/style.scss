@@ -31,31 +31,27 @@ main {
   img {
     width: 230px;
     height: 100%;
+    opacity: .3;
     border-radius: 8px;
   }
 }
 
 .infos-ocorrencia {
   height: 100%;
-  @include flex(space-between, flex-start, column);
+  @include padding(10px, 10px);
+  @include flex-gap(center, flex-start, column, 3rem);
 
   div {
     width: 100%;
     text-align: justify;
     font-size: 0.875rem;
-    @include flex-gap(center, flex-start, column, 0.375rem);
+    @include flex-gap(center, flex-start, column, .75rem);
   }
 
   div:last-child {
     @include flex(space-between, center, row);
     font-size: 0.75rem;
   }
-}
-
-.titulo-ocorrencia {
-  font-size: 1.875rem;
-  text-transform: uppercase;
-  font-weight: 500;
 }
 
 .descricao {
@@ -67,13 +63,4 @@ main {
 
 .endereco {
   font-size: 0.75rem;
-}
-
-.filtro {
-  width: 400px;
-  height: auto;
-  background: $gray-5;
-  border-radius: 0.5rem;
-  border: 1px solid $gray-opacity;
-  @include padding(0.625rem, 0.625rem);
 }

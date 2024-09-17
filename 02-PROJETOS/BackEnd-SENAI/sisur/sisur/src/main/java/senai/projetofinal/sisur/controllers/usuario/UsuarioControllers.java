@@ -6,16 +6,24 @@ import org.springframework.web.bind.annotation.*;
 import senai.projetofinal.sisur.dtos.usuario.LoginUsuarioRequest;
 import senai.projetofinal.sisur.dtos.usuario.UsuarioRequest;
 import senai.projetofinal.sisur.dtos.usuario.UsuarioRequestSenha;
+import senai.projetofinal.sisur.dtos.usuario.UsuarioResponse;
 import senai.projetofinal.sisur.service.usuario.UsuarioService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sisur")
 public class UsuarioControllers {
 
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     public UsuarioControllers(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
+    }
+
+    @GetMapping("/usuario")
+    public ResponseEntity<List<UsuarioResponse>> readAll() {
+        return usuarioService.readAll();
     }
 
     @PostMapping("/usuario/login")

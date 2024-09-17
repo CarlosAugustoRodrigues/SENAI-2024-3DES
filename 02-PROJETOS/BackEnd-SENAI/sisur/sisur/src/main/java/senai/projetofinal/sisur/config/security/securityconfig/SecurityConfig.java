@@ -30,15 +30,17 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
 
                         // ROTAS FUNCIONARIOS E ADMIN
+                        .requestMatchers(HttpMethod.GET, "/sisur/funcionario").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/sisur/funcionario/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/sisur/funcionario").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/sisur/funcionario/deletar/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/sisur/funcionario/alterarsenha/{email}").hasRole("ADMIN")
 
                         // ROTAS USUARIOS
+                        .requestMatchers(HttpMethod.GET, "/sisur/usuario").hasAnyRole("ADMIN", "FUNCIONARIO")
                         .requestMatchers(HttpMethod.POST, "/sisur/usuario/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/sisur/usuario").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/sisur/usuario/alterarsenha/{email}").hasAnyRole("FUNCIONARIO", "USUARIO")
+                        .requestMatchers(HttpMethod.PUT, "/sisur/usuario/alterarsenha/{email}").permitAll()
 
                         // ROTAS OCORRENCIAS
                         .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia").permitAll()

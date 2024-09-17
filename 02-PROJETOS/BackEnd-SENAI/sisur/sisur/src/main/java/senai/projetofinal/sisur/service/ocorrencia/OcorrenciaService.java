@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import senai.projetofinal.sisur.dtos.ocorrencia.OcorrenciaRequest;
 import senai.projetofinal.sisur.dtos.ocorrencia.OcorrenciaResponse;
 import senai.projetofinal.sisur.entities.Ocorrencia;
+import senai.projetofinal.sisur.enums.Setor;
 import senai.projetofinal.sisur.repositories.OcorrenciaRepository;
 import senai.projetofinal.sisur.repositories.UsuarioRepository;
 
@@ -14,8 +15,8 @@ import java.util.List;
 @Service
 public class OcorrenciaService {
 
-    OcorrenciaRepository ocorrenciaRepository;
-    UsuarioRepository usuarioRepository;
+    private final OcorrenciaRepository ocorrenciaRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public OcorrenciaService(OcorrenciaRepository ocorrenciaRepository,
                              UsuarioRepository usuarioRepository) {
@@ -59,7 +60,7 @@ public class OcorrenciaService {
 
     // Service para FUNCIONARIO pegar todas ocorrências referente ao setor
     public ResponseEntity<List<OcorrenciaResponse>> readSetor(String setor) {
-        String setorUpper = setor.toUpperCase();
+        Setor setorUpper = Setor.valueOf(setor.toUpperCase());
         List<OcorrenciaResponse> listaOcorrenciaSetor = ocorrenciaRepository.findBySetor(setorUpper)
                 .stream()
                 .map(OcorrenciaResponse::new)

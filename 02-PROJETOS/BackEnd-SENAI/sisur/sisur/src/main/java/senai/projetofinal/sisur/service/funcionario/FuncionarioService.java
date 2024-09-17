@@ -9,10 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import senai.projetofinal.sisur.config.security.Token;
-import senai.projetofinal.sisur.dtos.funcionario.FuncionarioRequest;
-import senai.projetofinal.sisur.dtos.funcionario.FuncionarioRequestSenha;
-import senai.projetofinal.sisur.dtos.funcionario.LoginFuncionarioRequest;
-import senai.projetofinal.sisur.dtos.funcionario.LoginFuncionarioResponse;
+import senai.projetofinal.sisur.dtos.funcionario.*;
 import senai.projetofinal.sisur.entities.Funcionario;
 import senai.projetofinal.sisur.repositories.FuncionarioRepository;
 
@@ -24,9 +21,9 @@ import java.util.UUID;
 @Service
 public class FuncionarioService {
 
-    FuncionarioRepository funcionarioRepository;
-    PasswordEncoder passwordEncoder;
-    Token tokenService;
+    private final FuncionarioRepository funcionarioRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final Token tokenService;
 
     public FuncionarioService(FuncionarioRepository funcionarioRepository,
                               PasswordEncoder passwordEncoder,
@@ -53,6 +50,17 @@ public class FuncionarioService {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("E-mail e/ou Senha inválidos!");
+    }
+
+    // Service para pegar todos os funcionario - Apenas ADMIN pode utilizar esse service
+    public ResponseEntity<List<FuncionarioResponse>> readAll() {
+        List<FuncionarioResponse> listaFuncionario = funcionarioRepository.findAll()
+                .stream()
+                .map(FuncionarioResponse::new)
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(listaFuncionario);
     }
 
     // Service criar conta funcionário - Apenas ADMIN pode utilizar esse service

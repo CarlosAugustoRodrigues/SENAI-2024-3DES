@@ -5,22 +5,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import senai.projetofinal.sisur.config.security.Token;
-import senai.projetofinal.sisur.dtos.usuario.LoginUsuarioRequest;
-import senai.projetofinal.sisur.dtos.usuario.LoginUsuarioResponse;
-import senai.projetofinal.sisur.dtos.usuario.UsuarioRequest;
-import senai.projetofinal.sisur.dtos.usuario.UsuarioRequestSenha;
+import senai.projetofinal.sisur.dtos.usuario.*;
 import senai.projetofinal.sisur.entities.Usuario;
 import senai.projetofinal.sisur.repositories.UsuarioRepository;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class UsuarioService {
 
-    UsuarioRepository usuarioRepository;
-    PasswordEncoder passwordEncoder;
-    Token tokenService;
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final Token tokenService;
 
     public UsuarioService(UsuarioRepository usuarioRepository,
                           PasswordEncoder passwordEncoder,
@@ -39,7 +37,7 @@ public class UsuarioService {
                     .body("Usuário não encontrado!");
         }
 
-        if (data.email().equals(usuario.get().getEmail()) && passwordEncoder.matches(data.senha(), usuario.get().getPassword())) {
+        if (passwordEncoder.matches(data.senha(), usuario.get().getPassword())) {
             String token = tokenService.generateTokenUsuario(usuario.get());
 
             return ResponseEntity.status(HttpStatus.OK)
@@ -48,6 +46,17 @@ public class UsuarioService {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("E-mail e/ou Senha inválidos!");
+    }
+
+    // Service para listar todos os usuario - Apenas FUNCIONARIO pode utilizar esse service
+    public ResponseEntity<List<UsuarioResponse>> readAll() {
+        List<UsuarioResponse> listaUsuario = usuarioRepository.findAll()
+                .stream()
+                .map(UsuarioResponse::new)
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(listaUsuario);
     }
 
     // Service criar conta usuário

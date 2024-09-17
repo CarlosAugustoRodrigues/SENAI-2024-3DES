@@ -35,6 +35,7 @@ public class Ocorrencia {
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
+    @JsonIgnore
     private Usuario usuario;
 
 
