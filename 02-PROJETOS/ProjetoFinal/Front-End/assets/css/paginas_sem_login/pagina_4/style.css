@@ -7,7 +7,7 @@ main {
 }
 
 .div-form {
-  width: 400px;
+  width: 350px;
   height: auto;
   background: rgb(120, 120, 120);
   border-radius: 0.5rem;
@@ -18,7 +18,7 @@ main {
   align-items: center;
   gap: 3.125rem;
   padding-inline: 20px;
-  padding-block: 20px;
+  padding-block: 30px;
 }
 .div-form h3 {
   text-transform: uppercase;
@@ -44,7 +44,7 @@ main {
 .div-form form > div:last-child button {
   width: 100px;
   height: 40px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   border: none;
   border-radius: 0.5rem;
   color: rgb(255, 255, 255);

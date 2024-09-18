@@ -5,13 +5,13 @@ main {
 }
 
 .div-form {
-  width: 400px;
+  width: 350px;
   height: auto;
   background: $gray-3;
   border-radius: 0.5rem;
   color: $white;
   @include flex-gap(center, center, column, 3.125rem);
-  @include padding(20px, 20px);
+  @include padding(20px, 30px);
 
   h3 {
     text-transform: uppercase;

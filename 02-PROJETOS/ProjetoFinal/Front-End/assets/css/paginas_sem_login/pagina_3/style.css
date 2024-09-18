@@ -55,7 +55,7 @@ main > div > a {
 .div-form form > div:last-child button {
   width: 100px;
   height: 40px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   border: none;
   border-radius: 0.5rem;
   color: rgb(255, 255, 255);

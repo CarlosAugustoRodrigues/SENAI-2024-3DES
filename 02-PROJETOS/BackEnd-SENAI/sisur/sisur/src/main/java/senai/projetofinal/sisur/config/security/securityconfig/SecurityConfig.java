@@ -45,7 +45,7 @@ public class SecurityConfig {
                         // ROTAS OCORRENCIAS
                         .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia").permitAll()
                         .requestMatchers(HttpMethod.POST, "/sisur/ocorrencia").hasRole("USUARIO")
-                        .requestMatchers(HttpMethod.DELETE, "/sisur/ocorrencia/{id}").hasRole("USUARIO")
+                        .requestMatchers(HttpMethod.DELETE, "/sisur/ocorrencia/{id_usuario}/{id}").hasRole("USUARIO")
                         .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia/{setor}").hasRole("FUNCIONARIO")
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

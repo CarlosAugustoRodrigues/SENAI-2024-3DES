@@ -11,6 +11,7 @@ import senai.projetofinal.sisur.repositories.OcorrenciaRepository;
 import senai.projetofinal.sisur.repositories.UsuarioRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OcorrenciaService {
@@ -45,12 +46,17 @@ public class OcorrenciaService {
     }
 
     // Service para USUARIO excluir ocorrencia feita
-    public ResponseEntity<Object> delete(Long id) {
+    public ResponseEntity<Object> delete(Long id, UUID idUsuario) {
         var ocorrencia = ocorrenciaRepository.findById(id);
 
         if (ocorrencia.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Ocorrência não encontrada!");
+        }
+
+        if (!ocorrencia.get().getUsuario().getId().equals(idUsuario)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Não é possível excluir ocorrência de outros usuários!");
         }
 
         ocorrenciaRepository.deleteById(id);

@@ -9,6 +9,7 @@ import senai.projetofinal.sisur.entities.Ocorrencia;
 import senai.projetofinal.sisur.service.ocorrencia.OcorrenciaService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/sisur")
@@ -30,9 +31,10 @@ public class OcorrenciaControllers {
         return ocorrenciaService.create(data);
     }
 
-    @DeleteMapping("/ocorrencia/{id}")
-    public ResponseEntity<Object> delete(@PathVariable(value = "id") Long id) {
-        return ocorrenciaService.delete(id);
+    @DeleteMapping("/ocorrencia/{id_usuario}/{id}")
+    public ResponseEntity<Object> delete(@PathVariable(value = "id") Long id,
+                                         @PathVariable(value = "id_usuario")UUID idUsuario) {
+        return ocorrenciaService.delete(id, idUsuario);
     }
 
     @GetMapping("/ocorrencia/{setor}")
