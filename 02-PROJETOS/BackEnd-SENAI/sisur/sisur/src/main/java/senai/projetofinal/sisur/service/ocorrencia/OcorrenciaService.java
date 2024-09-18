@@ -39,6 +39,7 @@ public class OcorrenciaService {
     // Service para USUARIO registrar ocorrencia
     public ResponseEntity<Ocorrencia> create(OcorrenciaRequest data) {
         var usuario = usuarioRepository.findById(data.usuario());
+
         var novaOcorrencia = new Ocorrencia(data);
         novaOcorrencia.setUsuario(usuario.get());
         return ResponseEntity.status(HttpStatus.CREATED)

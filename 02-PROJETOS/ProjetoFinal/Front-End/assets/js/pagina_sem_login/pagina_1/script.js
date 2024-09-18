@@ -39,8 +39,10 @@ function renderizarOcorrencias() {
         divPrincipal.insertAdjacentElement('afterbegin', ultimasOcorrencias[0].criarCardDestaque());
     }
 
-    for(let i = 1; i < ultimasOcorrencias.length; i++) {
-        divCards.appendChild(ultimasOcorrencias[i].criarCard());
+    if(ultimasOcorrencias.length > 1) {
+        for(let i = 1; i < ultimasOcorrencias.length; i++) {
+            divCards.appendChild(ultimasOcorrencias[i].criarCard());
+        }
     }
 }
 
