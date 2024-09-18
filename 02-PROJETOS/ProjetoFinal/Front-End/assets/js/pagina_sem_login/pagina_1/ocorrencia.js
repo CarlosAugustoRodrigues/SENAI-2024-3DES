@@ -67,41 +67,45 @@ export class Ocorrencia {
     }
 
     criarCard() {
-        return `
-        <div class="cards-destaque-sec">
+        let div = document.createElement('div');
+        div.classList.add('cards-destaque-sec');
+        div.innerHTML = `
             <img src="./assets/img/logo.png">
-
+        
             <div class="infos-ocorrencia">
                 <div>
-                    <p class="descricao"></p>
+                    <p class="descricao">${this.getDescricao}</p>
 
-                    <p class="endereco">Endereço: <span>${this.getRua + "-" + this.getBairro}</span></p>
+                    <p class="endereco">Endereço: <span>${this.getRua + " - " + this.getBairro}</span></p>
                 </div>
 
                 <div>
                     <p class="data-hora">${this.formatarData()} <span>${this.formatarHora()}</span></p>
                 </div>
-            </div>
-        </div>`
+            </div>`
+
+        return div;
     }
 
     criarCardDestaque() {
-        return `
-        <div class="cards-destaque-pri">
+        let div = document.createElement('div');
+        div.classList.add('cards-destaque-pri');
+        div.innerHTML = `
             <img src="./assets/img/logo.png">
 
             <div class="infos-ocorrencia">
                 <div>
                     <p class="descricao">${this.descricao}</p>
 
-                    <p class="endereco">Endereço: <span>${this.getRua + "-" + this.getBairro}</span></p>
+                    <p class="endereco">Endereço: <span>${this.getRua + " - " + this.getBairro}</span></p>
                 </div>
 
                 <div>
                     <p class="data-hora">${this.formatarData()} <span>${this.formatarHora()}</span></p>
                 </div>
-            </div>
-        </div>`
+            </div>`
+        
+        return div;
     }
 
     formatarData() {

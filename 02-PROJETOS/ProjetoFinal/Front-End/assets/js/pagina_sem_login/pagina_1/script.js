@@ -2,10 +2,15 @@ import { Ocorrencia } from "./ocorrencia.js";
 
 const URI = "http://localhost:8090/sisur/ocorrencia";
 const divPrincipal = document.querySelector("#div-principal");
-const divCards = document.querySelector("#div-cards");
 var ocorrencias = [];
 
 function carregarOcorrencias() {
+    divPrincipal.innerHTML = "";
+    let _divCards = document.createElement('div');
+    _divCards.classList.add('div-cards');
+    _divCards.id = 'div-cards';
+
+    divPrincipal.appendChild(_divCards);
     ocorrencias = []
     fetch(URI)
         .then(response => response.json())
@@ -26,6 +31,21 @@ function carregarOcorrencias() {
 }
 
 function renderizarOcorrencias() {
+    const divCards = document.querySelector("#div-cards");
+    ordenarDataDesc();
+    let ultimasOcorrencias = ocorrencias.slice(0, 3);
+
+    if (ultimasOcorrencias.length > 0) {
+        divPrincipal.insertAdjacentElement('afterbegin', ultimasOcorrencias[0].criarCardDestaque());
+    }
+
+    for(let i = 1; i < ultimasOcorrencias.length; i++) {
+        divCards.appendChild(ultimasOcorrencias[i].criarCard());
+    }
+}
+
+function ordenarDataDesc() {
+    ocorrencias.sort((a, b) => new Date(b.datahora) - new Date(a.datahora));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -38,6 +38,8 @@ public class SecurityFilter extends OncePerRequestFilter {
         if (tokenString != null) {
             var email = token.validateToken(tokenString);
             var tipoToken = token.getTokenType(tokenString);
+            System.out.println(tipoToken);
+            System.out.println(tokenString);
             
             if (tipoToken.equals("funcionario")) {
                 var funcionario = funcionarioRepository.findByEmail(email)
