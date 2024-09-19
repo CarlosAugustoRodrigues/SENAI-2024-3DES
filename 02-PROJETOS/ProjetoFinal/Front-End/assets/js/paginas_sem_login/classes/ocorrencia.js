@@ -138,7 +138,7 @@ export class Ocorrencia {
         const dia = String(this.datahora.getDate()).padStart(2, '0');
         const mes = String(this.datahora.getMonth() + 1).padStart(2, '0');
         const ano = this.datahora.getFullYear();
-        return `${ dia } /${mes}/${ ano } `;
+        return `${ dia }/${mes}/${ ano } `;
     }
     
     formatarHora() {
