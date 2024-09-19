@@ -66,9 +66,10 @@ export class Ocorrencia {
         this.setor = valor;
     }
 
-    criarCard() {
+    // Metodos para criar cards na tela inicial
+    cardInicial() {
         let div = document.createElement('div');
-        div.classList.add('cards-destaque-sec');
+        div.classList.add('cards-destaque-sec')
         div.innerHTML = `
             <img src="./assets/img/logo.png">
         
@@ -87,7 +88,7 @@ export class Ocorrencia {
         return div;
     }
 
-    criarCardDestaque() {
+    cardDestaqueInicial() {
         let div = document.createElement('div');
         div.classList.add('cards-destaque-pri');
         div.innerHTML = `
@@ -95,28 +96,56 @@ export class Ocorrencia {
 
             <div class="infos-ocorrencia">
                 <div>
-                    <p class="descricao">${this.descricao}</p>
+                    <p class="descricao">${this.getDescricao}</p>
 
-                    <p class="endereco">Endereço: <span>${this.getRua + " - " + this.getBairro}</span></p>
+                    <p class="endereco">Endereço: <span>${this.getRua} - ${this.getBairro}</span></p>
                 </div>
 
                 <div>
                     <p class="data-hora">${this.formatarData()} <span>${this.formatarHora()}</span></p>
                 </div>
             </div>`
-        
+
         return div;
     }
+    // -------------------- // 
+
+
+    // Metodos para criar cards na tela de ocorrencia
+    cardOcorrencia() {
+        let div = document.createElement('div');
+        div.classList.add("cards-ocorrencia");
+        div.innerHTML = `
+            <img src="../../../img/logo.png">
+
+            <div class="infos-ocorrencia">
+                <div>
+                    <p class="descricao">${this.getDescricao}</p>
+
+                    <p class="endereco">Endereço: <span>${this.getRua} - ${this.getBairro}</span></p>
+                </div>
+
+                <div>
+                    <p class="data-hora">${this.formatarData()} <span>${this.formatarHora()}</span></p>
+                </div>
+            </div>`
+
+        return div;
+    }
+    // -------------------- // 
 
     formatarData() {
         const dia = String(this.datahora.getDate()).padStart(2, '0');
         const mes = String(this.datahora.getMonth() + 1).padStart(2, '0');
         const ano = this.datahora.getFullYear();
-        return `${dia}/${mes}/${ano}`;
+        return `${ dia } /${mes}/${ ano } `;
     }
+    
     formatarHora() {
         const horas = String(this.datahora.getHours()).padStart(2, '0');
         const minutos = String(this.datahora.getMinutes()).padStart(2, '0');
-        return `${horas}:${minutos}`;
+        return `${ horas }:${ minutos } `;
     }
+
+    
 }

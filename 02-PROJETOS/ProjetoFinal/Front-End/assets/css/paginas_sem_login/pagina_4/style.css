@@ -99,7 +99,4 @@ main {
 .div-input div input::placeholder {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
-}
-.div-input div input.error {
-  border-bottom: 2px solid rgb(255, 0, 0);
 }/*# sourceMappingURL=style.css.map */

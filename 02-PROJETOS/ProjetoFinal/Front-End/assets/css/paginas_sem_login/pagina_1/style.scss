@@ -81,6 +81,11 @@ main {
     text-align: justify;
     font-size: 0.875rem;
     @include flex-gap(center, flex-start, column, .75rem);
+
+    p {
+      max-width: fit-content;
+      word-break: break-all;
+    }
   }
 
   div:last-child {

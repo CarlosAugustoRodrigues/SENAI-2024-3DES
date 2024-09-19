@@ -1,4 +1,4 @@
-import { Ocorrencia } from "./ocorrencia.js";
+import { Ocorrencia } from "../classe/ocorrencia.js";
 
 const URI = "http://localhost:8090/sisur/ocorrencia";
 const divPrincipal = document.querySelector("#div-principal");
@@ -26,22 +26,22 @@ function carregarOcorrencias() {
                 );
                 ocorrencias.push(ocorrencia);
             });
+            ordenarDataDesc();
             renderizarOcorrencias();
         });
 }
 
 function renderizarOcorrencias() {
     const divCards = document.querySelector("#div-cards");
-    ordenarDataDesc();
     let ultimasOcorrencias = ocorrencias.slice(0, 3);
 
     if (ultimasOcorrencias.length > 0) {
-        divPrincipal.insertAdjacentElement('afterbegin', ultimasOcorrencias[0].criarCardDestaque());
+        divPrincipal.insertAdjacentElement('afterbegin', ultimasOcorrencias[0].cardDestaqueInicial());
     }
-
+    
     if(ultimasOcorrencias.length > 1) {
         for(let i = 1; i < ultimasOcorrencias.length; i++) {
-            divCards.appendChild(ultimasOcorrencias[i].criarCard());
+            divCards.appendChild(ultimasOcorrencias[i].cardInicial());
         }
     }
 }

@@ -3,12 +3,12 @@
 main {
   @include flex(center, center, row);
 
-  > div {
+  >div {
     height: 430px;
     width: 350px;
     @include flex(center, flex-end, column);
 
-    > a {
+    >a {
       text-decoration: underline;
       color: $blue;
       font-size: 1rem;
@@ -35,7 +35,7 @@ main {
     height: auto;
     @include flex-gap(center, center, column, 3.125rem);
 
-    > div:last-child {
+    >div:last-child {
       @include flex-gap(center, center, column, 0.75rem);
 
       button {
@@ -90,10 +90,6 @@ main {
         color: $white-opacity;
         font-size: 0.9rem;
       }
-    }
-
-    input.error {
-      border-bottom: 2px solid $red;
     }
   }
 }

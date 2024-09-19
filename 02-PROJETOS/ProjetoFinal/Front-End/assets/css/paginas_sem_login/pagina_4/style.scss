@@ -24,65 +24,61 @@ main {
     height: auto;
     @include flex-gap(center, center, column, 3.125rem);
 
-    > div:last-child {
-        @include flex-gap(center, center, column, 0.75rem);
-  
-        button {
-          width: 100px;
-          height: 40px;
-          background: $black-opacity;
-          border: none;
-          border-radius: 0.5rem;
-          color: $white;
-          font-size: 1rem;
-          font-weight: 700;
-          cursor: pointer;
-        }
-  
-        span {
-          font-size: 0.75rem;
+    >div:last-child {
+      @include flex-gap(center, center, column, 0.75rem);
 
-          a {
-            text-decoration: underline;
-          }
+      button {
+        width: 100px;
+        height: 40px;
+        background: $black-opacity;
+        border: none;
+        border-radius: 0.5rem;
+        color: $white;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      span {
+        font-size: 0.75rem;
+
+        a {
+          text-decoration: underline;
         }
       }
+    }
   }
 }
 
 .div-input {
+  width: 100%;
+  height: auto;
+  @include flex-gap(center, center, column, 1rem);
+
+  div {
     width: 100%;
     height: auto;
-    @include flex-gap(center, center, column, 1rem);
-  
-    div {
-      width: 100%;
+    @include flex-gap(center, center, row, 0.5rem);
+
+    label i {
+      font-size: 1.5rem;
+    }
+
+    input {
+      width: 85%;
       height: auto;
-      @include flex-gap(center, center, row, 0.5rem);
-  
-      label i {
-        font-size: 1.5rem;
-      }
-  
-      input {
-        width: 85%;
-        height: auto;
-        background: none;
-        border: none;
-        border-bottom: 2px solid $white;
-        outline: none;
-        color: $white;
-        font-size: 1.1rem;
-        @include padding(0, 10px);
-  
-        &::placeholder {
-          color: $white-opacity;
-          font-size: 0.9rem;
-        }
-      }
-  
-      input.error {
-        border-bottom: 2px solid $red;
+      background: none;
+      border: none;
+      border-bottom: 2px solid $white;
+      outline: none;
+      color: $white;
+      font-size: 1.1rem;
+      @include padding(0, 10px);
+
+      &::placeholder {
+        color: $white-opacity;
+        font-size: 0.9rem;
       }
     }
   }
+}
