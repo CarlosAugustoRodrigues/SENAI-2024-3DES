@@ -1,5 +1,15 @@
 @import "../../configuracoes/variaveis.scss";
 
+header {
+  .items {
+    li:last-child a {
+      @include estilo-btn(8px, $gray-2);
+      color: $white;
+      font-weight: 600;
+    }
+  }
+}
+
 main {
   @include flex(center, center, row);
 

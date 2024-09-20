@@ -1,4 +1,4 @@
-import { Ocorrencia } from "../classes/ocorrencia.js";
+import { Ocorrencia } from "../../classes/ocorrencia.js";
 
 const URI = "http://localhost:8090/sisur/ocorrencia";
 const divCards = document.querySelector("#div-cards");

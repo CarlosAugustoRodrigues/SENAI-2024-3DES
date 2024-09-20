@@ -1,12 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-header .items li:last-child a {
-  border-radius: 8px;
+header .items li .img-usuario {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid rgb(0, 255, 0);
   background: rgb(90, 90, 90);
-  height: 4.5vh;
-  width: auto;
-  padding: 10px;
-  color: rgb(255, 255, 255);
-  font-weight: 600;
+  cursor: pointer;
+}
+header .items li:last-child {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.menu-lateral {
+  width: 20%;
+  height: 100%;
+  background: rgb(90, 90, 90);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.menu-lateral-none {
+  display: none;
+}
+
+.animation-menu-lateral {
+  animation: mostrarmenu 0.2s ease-in-out;
+}
+
+.animation-menu-lateral-fechar {
+  animation: fecharmenu 0.2s ease-in-out;
+}
+
+.animation-overlay {
+  animation: overlay 0.2s ease-in-out;
+}
+
+.animation-overlay-tirar {
+  animation: tiraroverlay 0.2s ease-in-out;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+}
+
+.overlay-none {
+  display: none;
 }
 
 main {
@@ -139,4 +185,37 @@ main h1 {
 
 .endereco {
   font-size: 0.75rem;
+}
+
+@keyframes overlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes tiraroverlay {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes mostrarmenu {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes fecharmenu {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }/*# sourceMappingURL=style.css.map */
