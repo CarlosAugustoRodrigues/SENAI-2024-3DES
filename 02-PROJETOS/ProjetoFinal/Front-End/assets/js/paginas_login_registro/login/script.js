@@ -17,15 +17,17 @@ form.addEventListener('submit', async (e) => {
             },
             body: JSON.stringify(formData)
         })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            window.localStorage.setItem("dados", JSON.stringify(data));
-        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+
+                window.localStorage.setItem("dados", JSON.stringify(data));
+            })
 
         form.reset();
+        window.location.href = "/assets/pages/paginas_usuario/pagina_inicial/pagina_inicial.html";
 
-    } catch(error) {
+    } catch (error) {
         console.log("Erro ao efetuar login: ", error)
     }
 })

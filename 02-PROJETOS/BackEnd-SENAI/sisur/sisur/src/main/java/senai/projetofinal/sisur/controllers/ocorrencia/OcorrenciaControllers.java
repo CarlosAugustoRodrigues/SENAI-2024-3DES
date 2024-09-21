@@ -26,6 +26,11 @@ public class OcorrenciaControllers {
         return ocorrenciaService.readAll();
     }
 
+    @GetMapping("/ocorrencia/{id_usuario}")
+    public ResponseEntity<List<Ocorrencia>> readByUsuario(@PathVariable(value = "id_usuario") String id) {
+        return ocorrenciaService.readByUsuario(id);
+    }
+
     @PostMapping("/ocorrencia")
     public ResponseEntity<Ocorrencia> create(@RequestBody @Validated OcorrenciaRequest data) {
         return ocorrenciaService.create(data);

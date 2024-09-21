@@ -36,6 +36,16 @@ public class OcorrenciaService {
                 .body(listaOcorrencia);
     }
 
+    //Service para pegar todas as ocorrencias do usuario
+    public ResponseEntity<List<Ocorrencia>> readByUsuario(String id) {
+        var usuario = usuarioRepository.findById(UUID.fromString(id));
+        var usuarioId = usuario.get().getId();
+        List<Ocorrencia> listaOcorrencia = ocorrenciaRepository.findByUsuario(usuarioId);
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(listaOcorrencia);
+    }
+
     // Service para USUARIO registrar ocorrencia
     public ResponseEntity<Ocorrencia> create(OcorrenciaRequest data) {
         var usuario = usuarioRepository.findById(data.usuario());
