@@ -36,24 +36,24 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
 
                         // ROTAS FUNCIONARIOS E ADMIN
-                        .requestMatchers(HttpMethod.GET, "/sisur/funcionario").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/sisur/funcionario/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/sisur/funcionario").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/sisur/funcionario/deletar/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/sisur/funcionario/alterarsenha/{email}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/sisur/funcionario").hasRole("ADMIN") // TEM QUE FAZER
+                        .requestMatchers(HttpMethod.POST, "/sisur/funcionario/login").permitAll() // FEITO
+                        .requestMatchers(HttpMethod.POST, "/sisur/funcionario").hasRole("ADMIN") // FEITO
+                        .requestMatchers(HttpMethod.DELETE, "/sisur/funcionario/deletar/{id}").hasRole("ADMIN") // TEM QUE FAZER
+                        .requestMatchers(HttpMethod.PUT, "/sisur/funcionario/alterarsenha/{email}").hasRole("ADMIN") // TEM QUE FAZER
 
                         // ROTAS USUARIOS
                         .requestMatchers(HttpMethod.GET, "/sisur/usuario").hasAnyRole("ADMIN", "FUNCIONARIO")
-                        .requestMatchers(HttpMethod.POST, "/sisur/usuario/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/sisur/usuario").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/sisur/usuario/alterarsenha/{email}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/sisur/usuario/login").permitAll() // FEITO
+                        .requestMatchers(HttpMethod.POST, "/sisur/usuario").permitAll() // FEITO
+                        .requestMatchers(HttpMethod.PUT, "/sisur/usuario/alterarsenha/{email}").permitAll() // TEM QUE FAZER
 
                         // ROTAS OCORRENCIAS
-                        .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia/{id_usuario}").hasRole("USUARIO")
-                        .requestMatchers(HttpMethod.POST, "/sisur/ocorrencia").hasRole("USUARIO")
-                        .requestMatchers(HttpMethod.DELETE, "/sisur/ocorrencia/{id_usuario}/{id}").hasRole("USUARIO")
-                        .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia/{setor}").hasRole("FUNCIONARIO")
+                        .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia").permitAll() // FEITO
+                        .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia/usuario/{id}").hasRole("USUARIO") // FEITO
+                        .requestMatchers(HttpMethod.POST, "/sisur/ocorrencia").hasRole("USUARIO") // FEITO
+                        .requestMatchers(HttpMethod.DELETE, "/sisur/ocorrencia/{id_usuario}/{id}").hasRole("USUARIO") // TEM QUE FAZER
+                        .requestMatchers(HttpMethod.GET, "/sisur/ocorrencia/{setor}").hasRole("FUNCIONARIO") // FEITO
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

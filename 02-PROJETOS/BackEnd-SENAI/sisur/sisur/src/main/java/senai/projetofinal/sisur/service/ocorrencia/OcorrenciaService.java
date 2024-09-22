@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import senai.projetofinal.sisur.dtos.ocorrencia.OcorrenciaRequest;
 import senai.projetofinal.sisur.dtos.ocorrencia.OcorrenciaResponse;
 import senai.projetofinal.sisur.entities.Ocorrencia;
+import senai.projetofinal.sisur.entities.Usuario;
 import senai.projetofinal.sisur.enums.Setor;
 import senai.projetofinal.sisur.repositories.OcorrenciaRepository;
 import senai.projetofinal.sisur.repositories.UsuarioRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -36,11 +38,9 @@ public class OcorrenciaService {
                 .body(listaOcorrencia);
     }
 
-    //Service para pegar todas as ocorrencias do usuario
-    public ResponseEntity<List<Ocorrencia>> readByUsuario(String id) {
-        var usuario = usuarioRepository.findById(UUID.fromString(id));
-        var usuarioId = usuario.get().getId();
-        List<Ocorrencia> listaOcorrencia = ocorrenciaRepository.findByUsuario(usuarioId);
+    // Service para pegar todas as ocorrencias de um usuario
+    public ResponseEntity<List<Ocorrencia>> readByUsuario(UUID id) {
+        List<Ocorrencia> listaOcorrencia = ocorrenciaRepository.findByUsuario(id);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(listaOcorrencia);

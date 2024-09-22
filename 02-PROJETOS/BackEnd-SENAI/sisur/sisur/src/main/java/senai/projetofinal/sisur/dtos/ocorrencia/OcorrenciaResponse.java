@@ -5,6 +5,7 @@ import senai.projetofinal.sisur.entities.Usuario;
 import senai.projetofinal.sisur.enums.Setor;
 
 import java.time.Instant;
+import java.util.UUID;
 
 public record OcorrenciaResponse(
         Long id,

@@ -134,6 +134,75 @@ export class Ocorrencia {
     }
     // -------------------- // 
 
+
+    // Metodos para criar cards na tela inicial quando estiver logado
+    cardInicialLogin() {
+        let div = document.createElement('div');
+        div.classList.add('cards-destaque-sec')
+        div.innerHTML = `
+            <img src="../../../img/logo.png">
+        
+            <div class="infos-ocorrencia">
+                <div>
+                    <p class="descricao">${this.getDescricao}</p>
+
+                    <p class="endereco">Endereço: <span>${this.getRua + " - " + this.getBairro}</span></p>
+                </div>
+
+                <div>
+                    <p class="data-hora">${this.formatarData()} <span>${this.formatarHora()}</span></p>
+                </div>
+            </div>`
+
+        return div;
+    }
+
+    cardDestaqueInicialLogin() {
+        let div = document.createElement('div');
+        div.classList.add('cards-destaque-pri');
+        div.innerHTML = `
+            <img src="../../../img/logo.png">
+
+            <div class="infos-ocorrencia">
+                <div>
+                    <p class="descricao">${this.getDescricao}</p>
+
+                    <p class="endereco">Endereço: <span>${this.getRua} - ${this.getBairro}</span></p>
+                </div>
+
+                <div>
+                    <p class="data-hora">${this.formatarData()} <span>${this.formatarHora()}</span></p>
+                </div>
+            </div>`
+
+        return div;
+    }
+    // -------------------- // 
+
+    // Metodos para criar cards na tela inicial - FUNCIONARIO
+    cardOcorrenciaFuncionario() {
+        let div = document.createElement('div');
+        div.classList.add("cards-ocorrencia");
+        div.innerHTML = `
+            <img src="../../../img/logo.png">
+
+            <div class="infos-ocorrencia">
+                <div>
+                    <p class="descricao">${this.getDescricao}</p>
+
+                    <p class="endereco">Endereço: <span>${this.getRua} - ${this.getBairro}</span></p>
+                </div>
+
+                <div>
+                    <p class="data-hora">${this.formatarData()} <span>${this.formatarHora()}</span></p>
+                    <p class="data-hora">Setor: <span>${this.getSetor}</span></p>
+                </div>
+            </div>`
+
+        return div;
+    }
+    // -------------------- // 
+
     formatarData() {
         const dia = String(this.datahora.getDate()).padStart(2, '0');
         const mes = String(this.datahora.getMonth() + 1).padStart(2, '0');

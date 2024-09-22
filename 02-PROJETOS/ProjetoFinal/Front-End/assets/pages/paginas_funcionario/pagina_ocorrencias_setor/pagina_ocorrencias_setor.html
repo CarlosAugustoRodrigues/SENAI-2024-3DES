@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocorrências - SISUR</title>
+
+    <link rel="stylesheet" href="../../../css/global/config_global/config_global.css">
+    <link rel="stylesheet" href="../../../css/paginas_funcionario/pagina_ocorrencias_setor/style.css">
+    <link rel="stylesheet" href="../../../css/global/paginas_usuario_funcionario/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="shortcut icon" href="../../../img/logo.png" type="image/x-icon" />
+</head>
+
+<body>
+
+    <div class="menu-lateral menu-lateral-none" id="menu-lateral">
+
+        <span><i class="bi bi-x-lg fechar-menu" onclick="fecharMenu()"></i></span>
+
+        <nav class="nav-lateral">
+            <ul class="items">
+                <div>
+                    <li><a href="../pagina_inicial/pagina_inicial.html">Início</a></li>
+                    <li><a href="../pagina_ocorrencias_setor/pagina_ocorrencias_setor.html">Ocorrências do setor</a></li>
+                    <li><a href="../pagina_todas_ocorrencias/pagina_todas_ocorrencias.html">Todas ocorrências</a></li>
+                </div>
+
+                <li onclick="sairConta()"><a href="../../../../index.html">Sair da conta</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="overlay overlay-none" id="overlay"></div>
+
+    <header class="header">
+        <img class="logo" src="../../../img/logo.png">
+
+        <nav class="nav-bar">
+            <ul class="items">
+                <li><img src="../../../img/avatar-do-usuario.png" class="img-funcionario" onclick="mostrarMenu()"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Ocorrências - Setor: <span id="setor"></span></h1>
+
+        <div class="div-cards" id="div-cards"></div>
+    </main>
+</body>
+<script type="module" src="../../../js/pagina_funcionario/pagina_ocorrencias_setor/script.js"></script>
+<script src="../../../js/menu_lateral/menu.js"></script>
+<script src="../../../js/paginas_usuario/sair.js"></script>
+</html>

@@ -1,0 +1,68 @@
+@import "../../global/variaveis_mixins/variaveis.scss";
+
+main {
+  @include padding(10%, 3%);
+  @include flex-gap(flex-start, center, column, 3.125rem);
+
+  >h1 {
+    font-size: 2.8rem;
+  }
+}
+
+.form-funcionario {
+  @include flex-gap(flex-start, flex-start, column, 1.5rem);
+
+  div {
+    width: auto;
+    height: auto;
+    @include flex-gap(flex-start, flex-start, row, 1.5rem);
+  }
+
+  button {
+    @include estilo-btn(8px, $gray-3);
+    width: 100%;
+    font-size: 1.125rem;
+    color: $white;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+    
+    input {
+      font-family: $font;
+      font-size: 1.05rem;
+      resize: none;
+      width: 100%;
+      height: 50px;
+      outline: none;
+
+      border: 2px solid $gray-3;
+      border-radius: 8px;
+
+      transition: .3s;
+      @include padding(10px, 10px);
+
+      &:focus {
+        transform: scale(1.03);
+      }
+    }
+
+    select {
+      font-family: $font;
+      font-size: 1.05rem;
+      resize: none;
+      width: 100%;
+      height: 50px;
+      outline: none;
+
+      border: 2px solid $gray-3;
+      border-radius: 8px;
+
+      transition: .3s;
+      @include padding(10px, 10px);
+    }
+}

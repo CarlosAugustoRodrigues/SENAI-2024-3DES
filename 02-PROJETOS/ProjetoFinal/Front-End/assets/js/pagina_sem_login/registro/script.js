@@ -29,7 +29,7 @@ form.addEventListener("submit", async (e) => {
 
     if (confirm("Conta registrada com sucesso!")) {
       window.location.href =
-        "/assets/pages/paginas_sem_login/pagina_3/login.html";
+        "/assets/pages/paginas_sem_login/pagina_login/login.html";
     }
   } catch (error) {
     console.log(

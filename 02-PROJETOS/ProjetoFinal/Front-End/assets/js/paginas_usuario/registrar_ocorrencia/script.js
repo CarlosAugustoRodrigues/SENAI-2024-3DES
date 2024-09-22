@@ -28,6 +28,7 @@ form.addEventListener('submit', async (e) => {
         .then((data) => console.log(data))
 
         form.reset();
+        window.location.href = "/assets/pages/paginas_usuario/pagina_minhas_ocorrencias/pagina_minhas_ocorrencias.html";
     } 
     catch(error) {
         console.log("Erro ao registrar ocorrência: ", error);

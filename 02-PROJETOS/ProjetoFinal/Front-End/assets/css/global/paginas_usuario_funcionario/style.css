@@ -6,6 +6,20 @@ header .items li .img-usuario {
   border: 3px solid rgb(0, 255, 0);
   cursor: pointer;
 }
+header .items li .img-funcionario {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid rgb(0, 133, 255);
+  cursor: pointer;
+}
+header .items li .img-admin {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid rgb(255, 0, 0);
+  cursor: pointer;
+}
 header .items li:last-child {
   font-size: 1.4rem;
   cursor: pointer;

@@ -2,7 +2,7 @@ import { Ocorrencia } from "../../classes/ocorrencia.js";
 
 const usuario = JSON.parse(window.localStorage.getItem("dados")).usuario.id;
 const token = JSON.parse(window.localStorage.getItem("dados")).token;
-const URI = `http://localhost:8090/sisur/ocorrencia/${usuario}`;
+const URI = `http://localhost:8090/sisur/ocorrencia/usuario/${usuario}`;
 const divCards = document.querySelector("#div-cards");
 var ocorrencias = [];
 
@@ -12,8 +12,8 @@ function carregarOcorrencias() {
   fetch(URI, {
     method: "GET",
     headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     }
   })
     .then((response) => response.json())

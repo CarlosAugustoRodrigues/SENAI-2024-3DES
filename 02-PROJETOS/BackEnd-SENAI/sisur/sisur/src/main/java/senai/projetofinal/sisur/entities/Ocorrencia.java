@@ -11,6 +11,7 @@ import senai.projetofinal.sisur.dtos.ocorrencia.OcorrenciaRequest;
 import senai.projetofinal.sisur.enums.Setor;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_ocorrencia")
@@ -37,7 +38,6 @@ public class Ocorrencia {
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnore
     private Usuario usuario;
-
 
     private void converterSetor(String setor) {
         String setorString = setor;
