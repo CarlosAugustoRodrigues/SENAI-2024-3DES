@@ -61,7 +61,17 @@ public class ProfessorController {
     }
 
     @PostMapping("/professor/login")
-    public ResponseEntity<Professor> login(@RequestBody @Validated LoginRequest data) {
+    public ResponseEntity login(@RequestBody @Validated LoginRequest data) {
+        Optional<Professor> professor = repositoryProfessor.findByEmail(data.email());
 
+        if (professor.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("E-mail não cadastrado!");
+        }
+
+        if (!professor.get().getSenha().equals(data.senha())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Senha incorreta!");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(professor.get());
     }
 }

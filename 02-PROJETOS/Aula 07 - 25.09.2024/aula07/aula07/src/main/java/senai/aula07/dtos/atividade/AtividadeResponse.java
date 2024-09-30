@@ -4,12 +4,14 @@ import senai.aula07.entities.Atividade;
 import senai.aula07.entities.Turma;
 
 import java.time.Instant;
+import java.util.UUID;
 
 public record AtividadeResponse(
         Long id,
         String descricao,
         Instant dataInicio,
         Instant dataFim,
+        UUID idProfessor,
         Turma turma
 ) {
 
@@ -19,6 +21,7 @@ public record AtividadeResponse(
                 data.getDescricao(),
                 data.getDataInicio(),
                 data.getDataFim(),
+                data.getIdProfessor(),
                 data.getTurma()
         );
     }

@@ -94,4 +94,15 @@ public class TurmaController {
         repositoryTurma.delete(turma);
         return ResponseEntity.status(HttpStatus.OK).body("Turma excluida com sucesso!");
     }
+
+    @GetMapping("/turma/{id_professor}")
+    public ResponseEntity<List<TurmaResponse>> readByProfessor(@PathVariable(value = "id_professor")UUID id) {
+        List<TurmaResponse> listaTurma = repositoryTurma
+                .findByProfessor(id)
+                .stream()
+                .map(TurmaResponse::new)
+                .toList();
+
+        return ResponseEntity.ok(listaTurma);
+    }
 }

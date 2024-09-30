@@ -68,4 +68,15 @@ public class AtividadeController {
         repositoryAtividade.delete(atividade);
         return ResponseEntity.status(HttpStatus.OK).body("Atividade excluida com sucesso!");
     }
+
+    @GetMapping("/atividade/{id_turma}")
+    public ResponseEntity<List<AtividadeResponse>> readByTurma(@PathVariable(value = "id_turma") Long id) {
+        List<AtividadeResponse> listaAtividade = repositoryAtividade
+                .findByTurma(id)
+                .stream()
+                .map(AtividadeResponse::new)
+                .toList();
+
+        return ResponseEntity.ok(listaAtividade);
+    }
 }
