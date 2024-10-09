@@ -12,7 +12,7 @@
 	<artifactId>fabricaautomoveis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fabricaautomoveis</name>
-	<description>Atividade Fábrica de Automoveis - Aula 08</description>
+	<description>Atividade Aula 08 Fabrica Automoveis</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -59,6 +59,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.9</version>
 		</dependency>
 	</dependencies>
 
