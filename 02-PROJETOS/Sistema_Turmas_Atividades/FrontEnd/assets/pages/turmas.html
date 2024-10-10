@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turmas</title>
+    <link rel="stylesheet" href="../css/style_turmas.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+
+    <dialog class="dialog-add-turma none">
+        <button><i class="bi bi-x-circle"></i></button>
+        <h1>Adicionar Turma</h1>
+
+        <form id="form_turma">
+            <div>
+                <input type="text" name="nome" id="nome" placeholder="Nome da turma" required/>
+            </div>
+
+            <button>Criar Turma</button>
+        </form>
+    </dialog>
+
+    <div class="overlay overlay-none"></div>
+
+    <header>
+        <h1>Olá, <span id="nome">Wellington</span></h1>
+
+        <div onclick="sair()">
+            <i class="bi bi-door-open"></i>
+            <span>Sair</span>
+        </div>
+    </header>
+
+    <main>
+
+        <div>
+            <button class="btn-add-turma">
+                <i class="bi bi-plus-circle"></i>
+            </button>
+        </div>
+
+        <div class="div-cards-turmas">
+            <h1>Turmas</h1>
+
+            <div class="div-card">
+                <div class="card-turma">
+                    <div>
+                        <span id="nun_turma">T1</span>
+                        <span>-</span>
+                        <p id="nome_turma">Desenvolvimento de Sistemas</p>
+                    </div>
+                    
+                    <div class="div-btn">
+                        <button>
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <button>
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>
