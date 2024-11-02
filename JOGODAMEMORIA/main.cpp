@@ -35,7 +35,7 @@ void preencherTabuleiros() {
 
 void jogo() {
     while (pontuacao < pares) {
-        cout << endl << "Pontuacao: " << pontuacao << endl;
+        cout << endl << "Pontuacao: " << pontuacao << endl << endl;
 
         cout << "  ";
         for (int i = 0; i < coluna; i++) {
@@ -119,6 +119,12 @@ void jogo() {
 
 
 int main() {
+	
+	cout << "***************" << endl;
+	cout << "***************" << endl;
+	cout << "JOGO DA MEMÓRIA" << endl;
+	cout << "***************" << endl;
+	cout << "***************" << endl;
     
     preencherTabuleiros();
     jogo();
