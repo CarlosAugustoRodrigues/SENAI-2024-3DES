@@ -35,64 +35,89 @@ void preencherTabuleiros() {
 }
 
 void jogo() {
-
     while (pontuacao < pares) {
-        
-        cout << "Pontuacao: " << pontuacao << endl;
-        
-        for (int i = 0; i < linha; i++) {
-            for (int j = 0; j < coluna; j++){
-                cout << TABGAB[i][j] << " ";
-            }
-            cout << endl;
+        cout << endl << "Pontuacao: " << pontuacao << endl;
+
+        cout << "  ";
+        for (int i = 0; i < coluna; i++) {
+            cout << i << " ";
         }
-        
         cout << endl;
-        
+
         for (int i = 0; i < linha; i++) {
-            for (int j = 0; j < coluna; j++){
+            cout << i << " "; // Índice da linha
+            for (int j = 0; j < coluna; j++) {
                 cout << TABSEC[i][j] << " ";
             }
             cout << endl;
         }
 
-        cout << "Selecione a primeira carta, digite a linha e coluna: ";
-        cin >> x1 >> y1;
-        cout << endl;
+        do {
+            cout << endl << "Selecione a primeira carta, digite a linha e coluna: ";
+            cin >> x1 >> y1;
+            cout << endl;
+
+            if (TABSEC[x1][y1] != '*') {
+                cout << endl << "Carta já revelada, escolha novamente!" << endl;
+            }
+
+        } while (TABSEC[x1][y1] != '*');
 
         TABSEC[x1][y1] = TABGAB[x1][y1];
 
+        cout << "  ";
+        for (int j = 0; j < coluna; j++) {
+            cout << j << " ";
+        }
+        cout << endl;
+
         for (int i = 0; i < linha; i++) {
-            for (int j = 0; j < coluna; j++){
+            cout << i << " ";
+            for (int j = 0; j < coluna; j++) {
                 cout << TABSEC[i][j] << " ";
             }
             cout << endl;
         }
 
+        do {
+            cout << endl << "Selecione a segunda carta, digite a linha e coluna: ";
+            cin >> x2 >> y2;
+            cout << endl;
 
-        cout << "Selecione a segunda carta, digite a linha e coluna: ";
-        cin >> x2 >> y2;
-        cout << endl;
+            if (TABSEC[x2][y2] != '*') {
+                cout << endl << "Carta já revelada, escolha novamente!" << endl;
+            }
+        } while (TABSEC[x2][y2] != '*');
 
         TABSEC[x2][y2] = TABGAB[x2][y2];
 
+        cout << "  ";
+        for (int j = 0; j < coluna; j++) {
+            cout << j << " ";
+        }
+        cout << endl;
+
         for (int i = 0; i < linha; i++) {
-            for (int j = 0; j < coluna; j++){
+            cout << i << " "; // Índice da linha
+            for (int j = 0; j < coluna; j++) {
                 cout << TABSEC[i][j] << " ";
             }
             cout << endl;
         }
 
         if (TABSEC[x1][y1] != TABSEC[x2][y2]) {
-            cout << "Cartas diferentes, tente novamente!" << endl;
+            cout << endl << "Cartas diferentes, tente novamente!" << endl;
             TABSEC[x1][y1] = '*';
             TABSEC[x2][y2] = '*';
         } else {
-            cout << "Parabéns, você encontrou 1 par de cartas" << endl;
+            cout << endl << "Parabéns, você encontrou 1 par de cartas" << endl;
             pontuacao++;
         }
-    }                
+    }
+
+    cout << endl << "Parabéns, você encontrou todos os pares!" << endl;                
 }
+
 
 int main() {
     
