@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int linha = 4, coluna = 3, pares = (linha * coluna)/2;
+const int linha = 4, coluna = 4, pares = (linha * coluna)/2;
 
 int auxiliarPares = pares, linhaAle, colunaAle, pontuacao = 0, x1, x2, y1, y2;
 char TABGAB[linha][coluna], TABSEC[linha][coluna], letra = 65;
@@ -122,7 +122,7 @@ int main() {
 	
 	cout << "***************" << endl;
 	cout << "***************" << endl;
-	cout << "JOGO DA MEMÓRIA" << endl;
+	cout << "JOGO DA MEMORIA" << endl;
 	cout << "***************" << endl;
 	cout << "***************" << endl;
     
