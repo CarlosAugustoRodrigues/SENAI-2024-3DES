@@ -19,9 +19,8 @@ public class LoginUsuarioFuncionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
-    private String password;
+    private Integer pin;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "funcionario")
     private UsuarioFuncionario funcionario;
 }

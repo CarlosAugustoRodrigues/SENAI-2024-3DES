@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import senai.projeto.sisur.entities.usuarios.comum.UsuarioComum;
 import senai.projeto.sisur.enums.Setor;
+import senai.projeto.sisur.enums.Situacao;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -31,12 +33,9 @@ public class Ocorrencia {
     private String bairro;
     private String cep;
     private Instant dataHora;
+    private Situacao situacao;
     private Setor setor;
-    private String situacao;
-    private Set<String> comentarios = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario")
-    @JsonIgnore
-    private String usuario;
+    private UsuarioComum usuario;
 }

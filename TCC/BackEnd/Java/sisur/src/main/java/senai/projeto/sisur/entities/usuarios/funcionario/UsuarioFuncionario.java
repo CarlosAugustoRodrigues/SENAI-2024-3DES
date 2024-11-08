@@ -28,5 +28,4 @@ public class UsuarioFuncionario {
     private Setor setor;
     private Set<Role> roles = new HashSet<>();
     private Set<Responsabilidade> responsabilidades = new HashSet<>();
-
 }

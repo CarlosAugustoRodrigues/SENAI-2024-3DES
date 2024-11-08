@@ -22,6 +22,5 @@ public class LoginUsuarioComum {
     private String password;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario")
     private UsuarioComum usuario;
 }
