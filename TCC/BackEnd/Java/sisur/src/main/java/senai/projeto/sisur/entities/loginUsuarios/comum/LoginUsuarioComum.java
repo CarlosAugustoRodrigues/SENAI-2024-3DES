@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import senai.projeto.sisur.dtos.loginUsuarios.comum.LoginUsuarioComumReqDTO;
 import senai.projeto.sisur.entities.usuarios.comum.UsuarioComum;
 import senai.projeto.sisur.enums.Role;
 
@@ -67,5 +68,11 @@ public class LoginUsuarioComum implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public LoginUsuarioComum(LoginUsuarioComumReqDTO data, UsuarioComum usuario) {
+        setEmail(data.email());
+        setRole(Role.USUARIO);
+        setUsuario(usuario);
     }
 }

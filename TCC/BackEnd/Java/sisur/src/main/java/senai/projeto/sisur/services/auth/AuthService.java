@@ -13,14 +13,14 @@ import senai.projeto.sisur.repositories.LoginUsuarioComumRepository;
 import senai.projeto.sisur.repositories.LoginUsuarioFuncionarioRepository;
 
 @Service
-public class Auth {
+public class AuthService {
 
     private final Token token;
     private final LoginUsuarioComumRepository loginUsuarioComumRepository;
     private final LoginUsuarioFuncionarioRepository loginUsuarioFuncionarioRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Auth(Token token,
+    public AuthService(Token token,
                 LoginUsuarioComumRepository loginUsuarioComumRepository,
                 LoginUsuarioFuncionarioRepository loginUsuarioFuncionarioRepository,
                 PasswordEncoder passwordEncoder) {
