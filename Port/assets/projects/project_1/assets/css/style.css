@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font: "Teko", sans-serif;
+
+    --black: rgba(5, 5, 5, .8);
+    --opacity: rgba(0, 0, 0, .6);
+    --white: rgb(230, 230, 230);
+
+    --background: linear-gradient(45deg, rgb(20, 20, 100), rgb(50, 50, 130), rgb(80, 80, 160));
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+
+    background: var(--background);
+    background-attachment: fixed;
+
+    font-family: var(--font);
+}
+
+.relogio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 780px;
+    height: 330px;
+
+    gap: 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px var(--opacity);
+}
+
+.relogio div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 240px;
+    height: 280px;
+    background: var(--black);
+
+    border-radius: 10px;
+
+    color: var(--white);
+}
+
+.relogio div span {
+    font-size: 100px;
+
+    letter-spacing: 3px;
+}
+
+#time {
+    position: absolute;
+    bottom: 20px;
+
+    font-size: 20px;
+}

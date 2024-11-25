@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School of Rock - Matrícula</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="../script/script2.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div>
+            <img src="../img/logo3.png" alt="logotipo">
+
+            <p>SCHOOL OF <span>ROCK</span></p>
+        </div>
+
+        <ul>
+            <li><a href="../../index.html#home">HOME</a></li>
+            <li><a href="../../index.html#cursos">CURSOS</a></li>
+            <li><a href="./matricula.html">MATRÍCULA</a></li>
+            <li onclick="openModal()"><a>CONTATO</a></li>
+        </ul>
+    </header>
+
+    <dialog>
+        <h1>CONTATO</h1>
+
+        <form action="" method="post">
+
+            <div>
+                <label for="nome">NOME</label>
+                <input type="text" id="nome" name="nome" required/>
+            </div>
+            <div>
+                <label for="email">E-MAIL</label>
+                <input type="text" id="email" name="email" required/>
+            </div>
+            <div>
+                <label for="msg">MENSAGEM</label>
+                <textarea name="msg" id="msg"></textarea>
+            </div>
+
+            <button type="submit" class="btn">ENVIAR</button>
+
+        </form>
+
+        <button onclick="closeModal()" class="btn-close"><img src="../img/img4.png" alt=""></button>
+    </dialog>
+
+    <main>
+
+        <h1>MATRÍCULA</h1>
+
+        <form action="" method="post">
+            <div>
+                <label for="nome">NOME</label>
+                <input type="text"  id="nome" name="nome" required />
+            </div>
+            
+            <div>
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" name="cpf" required />
+            </div>
+
+            <div>
+                <label for="telefone">TELEFONE</label>
+                <input type="text" id="telefone" name="telefone" required />
+            </div>
+
+            <div>
+                <label for="curso">CURSO</label>
+                <select name="curso" id="curso">
+                    <option value=""></option>
+                    <option value="violao">VIOLÃO - R$ 599,90</option>
+                    <option value="guitarra">GUITARRA - R$ 799,90</option>
+                    <option value="baixo">BAIXO - R$ 799,90</option>
+                    <option value="bateria">BATERIA - R$ 899,90</option>
+                    <option value="piano">PIANO - R$ 1199,90 </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="pgto">FORMA DE PAGAMENTO</label>
+                <select name="pgto" id="pgto">
+                    <option value=""></option>
+                    <option value="boleto">BOLETO</option>
+                    <option value="crédito">CARTÃO DE CRÉDITO</option>
+                    <option value="débito">CARTÃO DE DÉBITO</option>
+                    <option value="pix">PIX</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">MATRICULAR-SE</button>
+
+        </form>
+    </main>
+
+
+    <footer>
+        <img src="../img/img2.png">
+
+        <ul>
+            <li><a target="_blank" href="https://github.com/carlosaugustorodrigues"><i class="bi bi-github"></i></a></li>
+            <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+            <li><a href="#"><i class="bi bi-youtube"></i></a></li>
+            <li><a href="#"><i class="bi bi-tiktok"></i></a></li>
+            <li><a href=""><i class="bi bi-geo-alt-fill"></i></a></li>
+            <li>|</li>
+        </ul>
+
+        <p>Copyright © 2024 by School Of Rock | All Rights Reserved.</p>
+    </footer>
+    
+</body>
+</html>

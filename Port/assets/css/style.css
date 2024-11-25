@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font);
+    list-style: none;
+    text-decoration: none;
+
+    scroll-behavior: smooth;
+    scroll-margin-top: 12vh;
+
+    cursor: none;
+}
+
+a {
+    color: currentColor;
+    cursor: none;
+}
+
+
+::selection {
+    background: var(--green);
+    color: var(--black-200);
+}
+
+:root {
+    --green: rgb(220, 255, 80);
+    --green-opacity: rgba(220, 255, 80, .2);
+    --gray: rgb(120, 120, 120);
+    --gray-opacity: rgba(120, 120, 120, .7);
+    --black-200: rgb(30, 30, 30);
+    --black-opacity: rgba(30, 30, 30, .7);
+    --offwhite: rgb(250, 255, 235);
+    --offwhite-opacity: rgba(250, 255, 235, .8);
+
+    --font: "Bebas Neue", sans-serif;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--black-200);
+}
+::-webkit-scrollbar {
+    width: 8px;
+    background: var(--black-200);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--green);
+}
+
+body {
+    width: 100vw;
+    height: auto;
+
+    background: var(--black-200);
+
+    overflow-x: hidden;
+}
+
+.cursor-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--gray);
+}
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gray-opacity);
+}
+
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+    z-index: 99999;
+    pointer-events: none;
+}
