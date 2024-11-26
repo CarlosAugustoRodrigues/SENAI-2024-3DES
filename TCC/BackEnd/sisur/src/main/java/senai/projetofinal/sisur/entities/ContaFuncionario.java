@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import senai.projetofinal.sisur.enums.Role;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class ContaFuncionario {
     @Column(unique = true)
     private String email;
     private String password;
-    private Set<String> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     @OneToOne(fetch = FetchType.EAGER)
     private Funcionario funcionario;

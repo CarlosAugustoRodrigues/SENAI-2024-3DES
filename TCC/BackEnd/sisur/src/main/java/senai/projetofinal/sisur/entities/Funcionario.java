@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import senai.projetofinal.sisur.enums.Responsabilidade;
+import senai.projetofinal.sisur.enums.Setor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +24,6 @@ public class Funcionario {
     private Long id;
     private String nome;
     private String imagemPerfil;
-    private String setor;
-    private Set<String> responsabilidades = new HashSet<>();
+    private Setor setor;
+    private Set<Responsabilidade> responsabilidades = new HashSet<>();
 }

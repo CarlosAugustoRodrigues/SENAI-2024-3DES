@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import senai.projetofinal.sisur.enums.Role;
 
 @Entity
 @Table(name = "tb_contas_usuarios")
@@ -21,7 +22,7 @@ public class ContaUsuario {
     @Column(unique = true)
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
     @OneToOne(fetch = FetchType.EAGER)
     private Usuario usuario;

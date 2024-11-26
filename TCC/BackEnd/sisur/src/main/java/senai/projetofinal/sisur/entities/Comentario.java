@@ -27,6 +27,6 @@ public class Comentario {
     @ManyToOne(fetch = FetchType.EAGER)
     private Ocorrencia ocorrencia;
 
-    private String perfil;
+    private String role;
     private Long responsavel;
 }

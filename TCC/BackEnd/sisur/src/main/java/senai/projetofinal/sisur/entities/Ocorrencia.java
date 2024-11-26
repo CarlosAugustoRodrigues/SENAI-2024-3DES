@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import senai.projetofinal.sisur.enums.Setor;
+import senai.projetofinal.sisur.enums.Status;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -29,8 +31,8 @@ public class Ocorrencia {
     private String bairro;
     private String cep;
     private Instant dataHora;
-    private String situacao;
-    private String setor;
+    private Status status;
+    private Setor setor;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
