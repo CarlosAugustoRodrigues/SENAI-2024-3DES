@@ -30,7 +30,7 @@ public class Ocorrencia {
     private String rua;
     private String bairro;
     private String cep;
-    private Instant dataHora;
+    private Instant data;
     private Status status;
     private Setor setor;
 
