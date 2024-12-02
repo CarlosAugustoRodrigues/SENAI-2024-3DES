@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+// FUNCIONARIO
+model Funcionario {
+  id Int @id @default(autoincrement())
+  nome String
+  imagemPerfil String?
+  setor Setor?
+  responsabilidade Responsabilidade?
+  ocorrencia Ocorrencia[]
+  infoConta ContaFuncionario[]
+}
+
+model ContaFuncionario {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  role Role @default(FUNCIONARIO)
+  funcionarioId Int
+  funcionario Funcionario @relation(fields: [funcionarioId], references: [id])
+
+  @@index([email])
+}
+
+
+// USUARIO
+model Usuario {
+  id Int @id @default(autoincrement())
+  nome String
+  imagemPerfil String?
+  telefone String
+  infoConta ContaUsuario[]
+  ocorrencia Ocorrencia[]
+  comentario Comentario[]
+}
+
+model ContaUsuario {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  role Role @default(USUARIO)
+  usuarioId Int
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([email])
+}
+
+
+// OCORRENCIA, COMENTARIO E MENSAGEM
+model Ocorrencia {
+  id Int @id @default(autoincrement())
+  descricao String
+  rua String
+  bairro String
+  cidade String
+  cep String
+  data DateTime @default(now())
+  status Status @default(REGISTRADA)
+  setor Setor
+  ativo Ativo @default(SIM)
+  usuarioId Int
+  funcionarioId Int?
+  comentario Comentario[]
+  mensagem Mensagem[]
+  imagens ImagensOcorrencias[]
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  funcionario Funcionario? @relation(fields: [funcionarioId], references: [id])
+}
+
+model ImagensOcorrencias {
+  id Int @id @default(autoincrement())
+  urlImagem String
+  ocorrenciaId Int
+
+  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
+  @@unique([urlImagem, ocorrenciaId])
+}
+
+model Comentario {
+  id Int @id @default(autoincrement())
+  comentario String
+  data DateTime @default(now())
+  ocorrenciaId Int
+  usuarioId Int
+
+  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id])
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+}
+
+model Mensagem {
+  id Int @id @default(autoincrement())
+  mensagem String
+  data DateTime @default(now())
+  ocorrenciaId Int
+  perfil Role
+  responsavel Int
+
+  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  FUNCIONARIO
+  USUARIO
+}
+
+enum Setor {
+  EDUCACAO
+  VIAS
+  INFRAESTRUTURA
+  LAZER
+  URBANISMO
+  ESPORTE
+  SAUDE
+}
+
+enum Responsabilidade {
+  ANALISAR
+  INTERMEDIAR
+}
+
+enum Status {
+  REGISTRADA
+  ENVIADA_AO_SETOR
+  ENVIADA_PARA_ANALISE
+  APROVADA
+  REJEITADA
+  EM_DESENVOLVIMENTO
+  ENCERRADA
+}
+
+enum Ativo {
+  SIM
+  NAO
+}
