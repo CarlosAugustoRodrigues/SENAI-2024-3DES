@@ -17,21 +17,18 @@ const registrarUsuario = async (req, res) => {
         const novoUsuario = await prisma.usuario.create({
             data: {
                 nome: nome, 
-                telefone: telefone
-            }
-        });
-
-        const contaUsuario = await prisma.contaUsuario.create({
-            data: {
-                email: email,
-                password: await bcrypt.hash(password, 10),
-                usuarioId: novoUsuario.id
+                telefone: telefone,
+                infoConta: {
+                    create: {
+                        email: email,
+                        password: await bcrypt.hash(password, 10),
+                    }
+                }
             }
         });
 
         res.status(201).json({
             message: "Usuario registrado com sucesso!",
-            ContaUsuario: contaUsuario,
             Usuario: novoUsuario
         });
 
@@ -95,8 +92,30 @@ const alterarSenha = async (req, res) => {
     }
 }
 
+const imagemPerfil = async (req, res) => {
+    try {
+        const imagem = req.files.map(file => ({ imagemPerfil: file.buffer }));
+
+        const usuario = await prisma.usuario.update({
+        where: { id: Number(req.params.usuarioId) },
+        data: {
+            imagemPerfil: imagem
+        }
+    });
+
+    res.status(200).json({
+        message: "Imagem de perfil alterada com sucesso!"
+    });
+
+    } catch(error) {
+        console.error(error);
+        res.status(400).json({message: "Erro ao alterar imagem de perfil!"});
+    }
+}
+
 module.exports = {
     registrarUsuario,
     alterarSenha,
-    lerUsuarios
+    lerUsuarios,
+    imagemPerfil
 }

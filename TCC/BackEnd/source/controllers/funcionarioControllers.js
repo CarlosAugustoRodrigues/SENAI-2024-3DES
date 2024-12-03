@@ -35,22 +35,19 @@ const registrarFuncionario = async (req, res) => {
             data: {
                 nome: nome,
                 setor: setor.toUpperCase(),
-                responsabilidade: responsabilidade.toUpperCase()
-            }
-        });
-
-        const contaFuncionario = await prisma.contaFuncionario.create({
-            data: {
-                email: email,
-                password: await bcrypt.hash(password, 10),
-                funcionarioId: novoFuncionario.id
+                responsabilidade: responsabilidade.toUpperCase(),
+                infoConta: {
+                    create: {
+                        email: email,
+                        assword: await bcrypt.hash(password, 10)
+                    }
+                }
             }
         });
 
         res.status(201).json({
             message: "Funcionário registrado com sucesso!",
             funcionario: novoFuncionario,
-            contaFuncionario: contaFuncionario
         });
 
     } catch(error) {
@@ -92,8 +89,30 @@ const alterarSenha = async (req, res) => {
     }
 }
 
+const imagemPerfil = async (req, res) => {
+    try {
+        const imagem = req.files.map(file => ({ imagemPerfil: file.buffer }));
+
+        const funcionario = await prisma.funcionario.update({
+        where: { id: Number(req.params.funcionarioId) },
+        data: {
+            imagemPerfil: imagem
+        }
+    });
+
+    res.status(200).json({
+        message: "Imagem de perfil alterada com sucesso!"
+    });
+
+    } catch(error) {
+        console.error(error);
+        res.status(400).json({message: "Erro ao alterar imagem de perfil!"});
+    }
+}
+
 module.exports = {
     lerFuncionarios,
     registrarFuncionario,
-    alterarSenha
+    alterarSenha,
+    imagemPerfil
 }

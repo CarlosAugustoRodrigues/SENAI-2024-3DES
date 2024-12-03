@@ -18,7 +18,7 @@ routes.get('/', (req, res) => {
 routes.post(
     "/ocorrencia", 
     middleware.validarAcessoUsuario, 
-     uploadImagem.array('imagens', 3),
+    uploadImagem.array('imagens', 3),
     ocorrenciaControllers.registrarOcorrencia
 ); // FUNCIONANDO
 
@@ -50,6 +50,13 @@ routes.get(
     "/mensagem/:ocorrenciaId", 
     middleware.validarAcessoUsuario || middleware.validarAcessoFuncionario, 
     mensagemControllers.lerMensagens
+); // TESTAR
+
+routes.put(
+    "/usuario/imagem_perfil/:usuarioId",
+    middleware.validarAcessoFuncionario,
+    uploadImagem.single('imagem'),
+    usuarioControllers.imagemPerfil
 ); // TESTAR
 
 
@@ -127,6 +134,13 @@ routes.get(
     middleware.validarAcessoAdmin, 
     ocorrenciaControllers.lerOcorrenciasExcluidas
 ); // FUNCIONANDO
+
+routes.put(
+    "/funcionario/imagem_perfil/:funcionarioId",
+    middleware.validarAcessoAdmin,
+    uploadImagem.single('imagem'),
+    funcionarioControllers.imagemPerfil
+); // TESTAR
 
 
 

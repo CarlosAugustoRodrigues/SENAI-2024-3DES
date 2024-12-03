@@ -18,7 +18,7 @@ datasource db {
 model Funcionario {
   id Int @id @default(autoincrement())
   nome String
-  imagemPerfil String?
+  imagemPerfil Bytes?
   setor Setor?
   responsabilidade Responsabilidade?
   ocorrencia Ocorrencia[]
@@ -41,7 +41,7 @@ model ContaFuncionario {
 model Usuario {
   id Int @id @default(autoincrement())
   nome String
-  imagemPerfil String?
+  imagemPerfil Bytes?
   telefone String
   infoConta ContaUsuario[]
   ocorrencia Ocorrencia[]

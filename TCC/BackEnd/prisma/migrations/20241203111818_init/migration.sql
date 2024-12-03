@@ -2,7 +2,7 @@
 CREATE TABLE `Funcionario` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(191) NOT NULL,
-    `imagemPerfil` VARCHAR(191) NULL,
+    `imagemPerfil` LONGBLOB NULL,
     `setor` ENUM('EDUCACAO', 'VIAS', 'INFRAESTRUTURA', 'LAZER', 'URBANISMO', 'ESPORTE', 'SAUDE') NULL,
     `responsabilidade` ENUM('ANALISAR', 'INTERMEDIAR') NULL,
 
@@ -26,7 +26,7 @@ CREATE TABLE `ContaFuncionario` (
 CREATE TABLE `Usuario` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(191) NOT NULL,
-    `imagemPerfil` VARCHAR(191) NULL,
+    `imagemPerfil` LONGBLOB NULL,
     `telefone` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
@@ -66,7 +66,7 @@ CREATE TABLE `Ocorrencia` (
 -- CreateTable
 CREATE TABLE `ImagensOcorrencias` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `urlImagem` VARCHAR(191) NOT NULL,
+    `urlImagem` LONGBLOB NOT NULL,
     `ocorrenciaId` INTEGER NOT NULL,
 
     UNIQUE INDEX `ImagensOcorrencias_urlImagem_ocorrenciaId_key`(`urlImagem`, `ocorrenciaId`),
