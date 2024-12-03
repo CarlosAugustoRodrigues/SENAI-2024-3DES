@@ -85,7 +85,7 @@ model Ocorrencia {
 
 model ImagensOcorrencias {
   id Int @id @default(autoincrement())
-  urlImagem String
+  urlImagem Bytes
   ocorrenciaId Int
 
   ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)

@@ -5,6 +5,12 @@ const registrarOcorrencia = async (req, res) => {
     try {
         const { descricao, rua, bairro, cidade, cep, setor, usuario } = req.body;
 
+        const imagens = req.files.map(file => ({ urlImagem: file.buffer }));
+
+        if (imagens.length > 3) {
+            return res.status(400).json({ message: "Máximo de 3 imagens permitidas." });
+        }
+
         const novaOcorrencia = await prisma.ocorrencia.create({
             data: {
                 descricao: descricao,
@@ -13,20 +19,23 @@ const registrarOcorrencia = async (req, res) => {
                 cidade: cidade,
                 cep: cep,
                 setor: setor.toUpperCase(),
-                usuarioId: Number(usuario)
-            }         
+                usuarioId: Number(usuario),
+                imagens: {
+                    create: imagens
+                }
+            }
         });
 
         res.status(201).json({
-            message: "Ocorrencia registrada com sucesso!",
+            message: "Ocorrência registrada com sucesso!",
             ocorrencia: novaOcorrencia
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
-        res.status(400).json({ message: "Erro ao criar ocorrencia!" });
+        res.status(400).json({ message: "Erro ao criar ocorrência!" });
     }
-}
+};
 
 const lerOcorrenciaPorUsuario = async (req, res) => {
     try {
@@ -138,7 +147,7 @@ const excluirOcorrencia = async (req, res) => {
 const lerOcorrenciaPorFuncionario = async (req, res) => {
     try {
         const funcionario = await prisma.funcionario.findUnique({
-            where: { id: Number(req.params.id) }
+            where: { id: Number(req.params.funcionarioId) }
         });
 
         const ocorrencias = await prisma.ocorrencia.findMany({
@@ -227,20 +236,20 @@ const alterarStatusOcorrenciaIntermediador = async (req, res) => {
     try {
         const {status} = req.body;
 
-        const ocorrencia = await prisma.ocorrencia.findUnique({
-            where: { id: Number(req.params.ocorrenciaId) }
-        });
-
         const funcionario = await prisma.funcionario.findUnique({
             where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(!ocorrencia) {
-            return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
-        }
-
         if(!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
+        }
+
+        const ocorrencia = await prisma.ocorrencia.findUnique({
+            where: { id: Number(req.params.ocorrenciaId) }
+        });
+
+        if(!ocorrencia) {
+            return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
         }
 
         if(ocorrencia.funcionarioId != Number(req.params.funcionarioId) || funcionario.responsabilidade != "INTERMEDIAR") {
@@ -295,7 +304,7 @@ const lerOcorrenciaRegistradaSetorAnalista = async (req, res) => {
 
 const alterarInfoOcorrenciaAnalista = async (req, res) => {
     try {
-        const { descricao, rua, bairro, cidade, cep, setor, ocorrenciaId, funcionarioId } = req.body;
+        const { descricao, rua, bairro, cidade, cep, setor } = req.body;
 
         const funcionario = await prisma.funcionario.findUnique({
             where: { id: Number(req.params.funcionarioId) }
@@ -341,20 +350,20 @@ const alterarInfoOcorrenciaAnalista = async (req, res) => {
 
 const enviarOcorrenciaIntermediador = async (req, res) => {
     try {
-        const ocorrencia = await prisma.ocorrencia.findUnique({
-            where: { id: Number(req.params.ocorrenciaId) }
-        });
-
         const funcionario = await prisma.funcionario.findUnique({
             where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(!ocorrencia) {
-            return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
-        }
-
         if(!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
+        }
+
+        const ocorrencia = await prisma.ocorrencia.findUnique({
+            where: { id: Number(req.params.ocorrenciaId) }
+        });
+
+        if(!ocorrencia) {
+            return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
         }
 
         if(funcionario.responsabilidade != "ANALISAR") {
@@ -382,17 +391,9 @@ const rejeitarOcorrenciaAnalista = async (req, res) => {
     try {
         const { justificativa } = req.body;
 
-        const ocorrencia = await prisma.ocorrencia.findUnique({
-            where: { id: Number(req.params.ocorrenciaId) }
-        });
-
         const funcionario = await prisma.funcionario.findUnique({
             where: { id: Number(req.params.funcionarioId) }
         });
-
-        if(!ocorrencia) {
-            return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
-        }
 
         if(!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
@@ -400,6 +401,14 @@ const rejeitarOcorrenciaAnalista = async (req, res) => {
 
         if(funcionario.responsabilidade != "ANALISAR") {
             return res.status(400).json({ message: "Erro, ação não permitida!" });
+        }
+
+        const ocorrencia = await prisma.ocorrencia.findUnique({
+            where: { id: Number(req.params.ocorrenciaId) }
+        });
+
+        if(!ocorrencia) {
+            return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
         }
 
         const ocorrenciaRejeitada = await prisma.ocorrencia.update({
