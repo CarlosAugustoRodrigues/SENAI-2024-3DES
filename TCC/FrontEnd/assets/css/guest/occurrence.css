@@ -1,0 +1,20 @@
+main {
+  section {
+    h1 {
+      font-size: 4.5rem;
+      text-transform: uppercase;
+
+      letter-spacing: 0.3rem;
+    }
+  }
+}
+
+.card-occurrence {
+  width: 520px;
+  height: 280px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--white-opacity);
+  padding: 50px 35px;
+  background: var(--white-opacity);
+}
