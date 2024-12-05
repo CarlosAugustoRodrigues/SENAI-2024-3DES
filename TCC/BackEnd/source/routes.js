@@ -17,8 +17,7 @@ routes.get('/', (req, res) => {
 // ROTAS QUE USUARIOS PODEM UTILIZAR
 routes.post(
     "/ocorrencia", 
-    middleware.validarAcessoUsuario, 
-    uploadImagem.array('imagens', 3),
+    middleware.validarAcessoUsuario,
     ocorrenciaControllers.registrarOcorrencia
 ); // FUNCIONANDO
 
@@ -55,7 +54,6 @@ routes.get(
 routes.put(
     "/usuario/imagem_perfil/:usuarioId",
     middleware.validarAcessoFuncionario,
-    uploadImagem.single('imagem'),
     usuarioControllers.imagemPerfil
 ); // TESTAR
 
@@ -138,7 +136,6 @@ routes.get(
 routes.put(
     "/funcionario/imagem_perfil/:funcionarioId",
     middleware.validarAcessoAdmin,
-    uploadImagem.single('imagem'),
     funcionarioControllers.imagemPerfil
 ); // TESTAR
 
@@ -146,7 +143,7 @@ routes.put(
 
 // ROTAS QUE GUEST (QUALQUER PESSOA QUE NÃO ESTÁ LOGADA NO SISTEMA) PODE UTILIZAR
 routes.post(
-    "/usuario/registrar", 
+    "/usuario/registro", 
     usuarioControllers.registrarUsuario
 ); // FUNCIONANDO
 

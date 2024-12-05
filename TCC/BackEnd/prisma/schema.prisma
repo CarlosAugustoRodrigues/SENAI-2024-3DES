@@ -68,6 +68,7 @@ model Ocorrencia {
   rua String
   bairro String
   cidade String
+  estado String @default("SP")
   cep String
   data DateTime @default(now())
   status Status @default(REGISTRADA)
@@ -85,10 +86,10 @@ model Ocorrencia {
 
 model ImagensOcorrencias {
   id Int @id @default(autoincrement())
-  urlImagem Bytes
-  ocorrenciaId Int
+  urlImagem Bytes?
+  ocorrenciaId Int?
 
-  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
+  ocorrencia Ocorrencia? @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
   @@unique([urlImagem, ocorrenciaId])
 }
 

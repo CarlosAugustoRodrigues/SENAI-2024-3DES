@@ -5,11 +5,13 @@ const registrarOcorrencia = async (req, res) => {
     try {
         const { descricao, rua, bairro, cidade, cep, setor, usuario } = req.body;
 
-        const imagens = req.files.map(file => ({ urlImagem: file.buffer }));
+        //const imagens = req.files.map(file => ({ urlImagem: file.buffer }));
 
+        /*
         if (imagens.length > 3) {
             return res.status(400).json({ message: "Máximo de 3 imagens permitidas." });
         }
+        */
 
         const novaOcorrencia = await prisma.ocorrencia.create({
             data: {
@@ -20,9 +22,6 @@ const registrarOcorrencia = async (req, res) => {
                 cep: cep,
                 setor: setor.toUpperCase(),
                 usuarioId: Number(usuario),
-                imagens: {
-                    create: imagens
-                }
             }
         });
 

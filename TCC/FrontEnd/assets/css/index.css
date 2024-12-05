@@ -22,10 +22,13 @@
     --white: rgb(255, 255, 255);
 
     --blue: rgb(50, 150, 255);
+    --red: rgb(230, 20, 20);
 
     --gradient-1: linear-gradient(75deg, rgb(50, 150, 255), rgb(50, 0, 255));
+    --gradient-1-opacity: linear-gradient(75deg, rgba(50, 150, 255, .6), rgba(50, 0, 255, .8));
     --gradient-2: linear-gradient(45deg, rgb(255, 255, 255), rgb(150, 150, 150));
     --gradient-3: linear-gradient(70deg, rgb(120, 30, 230), rgb(220, 70, 100));
+    --gradient-3-opacity: linear-gradient(70deg, rgba(120, 30, 230, .8), rgba(220, 70, 100, .6));
     --gradient-4: linear-gradient(45deg, rgb(70, 70, 70), rgb(90, 90, 90));
 
 
@@ -75,12 +78,13 @@ header {
             justify-content: center;
             gap: 2rem;
 
-            li{
+            li {
                 transition: .3s;
+
                 a {
                     transition: .3s;
                     font-size: 1.35rem;
-                    color: var(--gray-1);
+                    color: var(--black);
                 }
             }
 
@@ -94,6 +98,7 @@ header {
 
                 transition: .3s;
             }
+
             :hover::after {
                 width: 100%;
             }
@@ -112,6 +117,7 @@ header {
                 padding-inline: 10px;
                 transition: 0;
             }
+
             :last-child:hover {
                 a {
                     background: var(--gradient-3);
@@ -173,7 +179,7 @@ footer {
                 background: var(--gradient-1);
             }
 
-            > div {
+            >div {
                 display: flex;
                 flex-direction: column;
                 gap: .5rem;
@@ -187,7 +193,7 @@ footer {
 
                     a {
                         color: var(--gray-1);
-                    } 
+                    }
                 }
 
                 :hover {
@@ -200,6 +206,7 @@ footer {
 
                 span {
                     transition: .3s;
+
                     a {
                         color: var(--gray-1);
                     }
