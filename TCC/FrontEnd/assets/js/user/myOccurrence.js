@@ -1,4 +1,4 @@
-const usuarioId = JSON.parse(window.localStorage.getItem("dadosUsuario")).usuario.id;
+const usuarioId = JSON.parse(window.localStorage.getItem("dadosUsuario")).Usuario.id;
 const token = JSON.parse(window.localStorage.getItem("dadosUsuario")).token;
 const URI = `http://localhost:3000/ocorrencia/usuario/${usuarioId}`;
 const divOccurrence = document.querySelector('#div-occurrence');

@@ -20,9 +20,10 @@ form.addEventListener('submit', async (e) => {
     
         const response = await login.json();
         window.localStorage.setItem('dadosUsuario', JSON.stringify(response));
-        console.log(window.localStorage.getItem('dadosUsuario'));
+        console.log(window.localStorage.getItem('dadosUsuario').infoConta.email);
 
         form.reset();
+        window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/user/index.html'
     } catch(error) {
         console.error('Erro ao tentar fazer login', error);
     }

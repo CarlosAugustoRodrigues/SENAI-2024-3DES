@@ -1,0 +1,156 @@
+main {
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 3rem;
+
+    h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      
+      letter-spacing: 0.3rem;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+
+      height: 5px;
+      width: 160px;
+
+      background: var(--gradient-1);
+    }
+  }
+}
+
+.form-register-occurrence {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  gap: 1rem;
+
+
+  * {
+    font-family: var(--ff-teko);
+  }
+
+  .div-main-input {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+
+    gap: 1rem;
+  }
+
+  .div-input {
+    width: 100%;
+    font-size: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    input, textarea {
+      font-size: 1.2rem;
+      padding: 10px;
+      outline: none;
+      border: none;
+      border-bottom: 2px solid var(--black-opacity);
+
+      background: transparent;
+    }
+
+    :focus {
+      border-left: 2px solid var(--blue);
+      border-color: var(--blue);
+
+      border-radius: 3px;
+    }
+
+    input {
+      width: 100%;
+      height: 45px;
+    }
+
+    textarea {
+      width: 450px;
+      height: 200px;
+    }
+
+    input[type="file"] {
+      border: none;
+      display: none;
+      position: absolute;
+    }
+
+    .input-image {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 8px;
+
+      font-size: 1.4rem;
+
+      background: var(--lightgray-3);
+
+      i {
+        font-size: 3rem;
+        color: var(--blue);
+      }
+    }
+
+    .input-select {
+      appearance: none;
+      padding: 10px;
+      font-size: 1.2rem;
+      width: 100%;
+      height: 45px;
+      border: none;
+      border-bottom: 2px solid var(--black-opacity);
+
+      background: transparent;
+
+      background-image: url('../../img/jogar.png');
+      background-size: 15px;
+      background-position: right 10px top 50%;
+      background-repeat: no-repeat;
+
+      option {
+        font-size: 1.2rem;
+        padding: 10px;
+        background: var(--lightgray-1);
+      }
+    }
+  }
+
+  .btn-submit {
+    width: 100%;
+    height: 45px;
+
+    border: none;
+
+    color: var(--white);
+    font-size: 2rem;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    background: var(--gradient-1);
+
+    transition: .3s;
+  }
+
+  .btn-submit:hover {
+    background: var(--gradient-3);
+  }
+}

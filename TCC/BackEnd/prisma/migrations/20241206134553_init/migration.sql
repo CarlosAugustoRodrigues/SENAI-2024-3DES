@@ -52,6 +52,7 @@ CREATE TABLE `Ocorrencia` (
     `rua` VARCHAR(191) NOT NULL,
     `bairro` VARCHAR(191) NOT NULL,
     `cidade` VARCHAR(191) NOT NULL,
+    `estado` VARCHAR(191) NOT NULL DEFAULT 'SP',
     `cep` VARCHAR(191) NOT NULL,
     `data` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `status` ENUM('REGISTRADA', 'ENVIADA_AO_SETOR', 'ENVIADA_PARA_ANALISE', 'APROVADA', 'REJEITADA', 'EM_DESENVOLVIMENTO', 'ENCERRADA') NOT NULL DEFAULT 'REGISTRADA',
@@ -66,8 +67,8 @@ CREATE TABLE `Ocorrencia` (
 -- CreateTable
 CREATE TABLE `ImagensOcorrencias` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `urlImagem` LONGBLOB NOT NULL,
-    `ocorrenciaId` INTEGER NOT NULL,
+    `urlImagem` LONGBLOB NULL,
+    `ocorrenciaId` INTEGER NULL,
 
     UNIQUE INDEX `ImagensOcorrencias_urlImagem_ocorrenciaId_key`(`urlImagem`, `ocorrenciaId`),
     PRIMARY KEY (`id`)

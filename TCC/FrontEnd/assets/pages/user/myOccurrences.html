@@ -46,6 +46,27 @@
             <h1>Minhas ocorrências</h1>
 
             <div class="div-occurrence" id="div-occurrence">
+                <div class="card-occurrence">
+                    <div class="div-btn">
+                        <button><i class="bi bi-trash-fill"></i></button>
+                        <button><i class="bi bi-chat-right-text-fill"></i></button>
+                    </div>
+                    <div class="img-occurrence"></div>
+                
+                    <div class="info-occurrence">
+                        <div>
+                            <p class="description">${e.descricao}</p>
+                            <p class="address">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                ${e.rua + ' - ' + e.bairro + ' | ' + e.cidade + '/' + e.estado}
+                            </p>    
+                        </div>
+                        <div>
+                            <p class="status">Situação: ${e.status}</p> 
+                            <p class="date">${formatDate(e.data) + ' - ' + formatHours(e.data)}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

@@ -5,23 +5,43 @@ const registrarOcorrencia = async (req, res) => {
     try {
         const { descricao, rua, bairro, cidade, cep, setor, usuario } = req.body;
 
-        //const imagens = req.files.map(file => ({ urlImagem: file.buffer }));
-
-        /*
-        if (imagens.length > 3) {
-            return res.status(400).json({ message: "Máximo de 3 imagens permitidas." });
+        if (!descricao.trim() || !rua.trim() || !bairro.trim() || !cidade.trim() || !cep.trim() || !usuario) {
+            return res.status(400).json({
+                message: "Todos os campos obrigatórios devem ser preenchidos, exceto o setor!"
+            });
         }
-        */
+
+        const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
+        if (!cepRegex.test(cep)) {
+            return res.status(400).json({ message: "CEP inválido!" });
+        }
+
+        const usuarioExistente = await prisma.usuario.findUnique({
+            where: { id: Number(usuario) },
+        });
+
+        if (!usuarioExistente) {
+            return res.status(404).json({ message: "Usuário não encontrado!" });
+        }
+
+        let setorValidado = null;
+        if (setor) {
+            const setoresValidos = ["EDUCACAO", "VIAS", "INFRAESTRUTURA", "LAZER", "URBANISMO", "ESPORTE", "SAUDE"];
+            if (!setoresValidos.includes(setor.toUpperCase().trim())) {
+                return res.status(400).json({ message: "Setor inválido!" });
+            }
+            setorValidado = setor.toUpperCase().trim();
+        }
 
         const novaOcorrencia = await prisma.ocorrencia.create({
             data: {
-                descricao: descricao,
-                rua: rua,
-                bairro: bairro,
-                cidade: cidade,
-                cep: cep,
-                setor: setor.toUpperCase(),
-                usuarioId: Number(usuario),
+                descricao: descricao.trim(),
+                rua: rua.trim(),
+                bairro: bairro.trim(),
+                cidade: cidade.trim(),
+                cep: cep.trim(),
+                setor: setorValidado,
+                usuario: { connect: { id: Number(usuario) } }
             }
         });
 
