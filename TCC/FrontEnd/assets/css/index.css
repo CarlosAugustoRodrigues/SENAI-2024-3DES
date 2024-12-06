@@ -10,6 +10,7 @@
 
 :root {
     --black: rgb(0, 0, 0);
+    --black-opacity: rgba(0, 0, 0, .3);
 
     --lightgray-1: rgb(240, 240, 240);
     --lightgray-1-opacity: rgb(240, 240, 240, .4);
@@ -17,7 +18,7 @@
 
     --gray-1: rgb(70, 70, 70);
 
-    --white-opacity: rgba(255, 255, 255, .13);
+    --white-opacity: rgba(255, 255, 255, .15);
 
     --white: rgb(255, 255, 255);
 
@@ -88,7 +89,7 @@ header {
                 }
             }
 
-            :not(:last-child):after {
+            :not(:last-child)::after {
                 content: '';
                 display: block;
 
