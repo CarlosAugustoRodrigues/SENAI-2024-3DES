@@ -48,7 +48,7 @@ CREATE TABLE `ContaUsuario` (
 -- CreateTable
 CREATE TABLE `Ocorrencia` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `descricao` VARCHAR(191) NOT NULL,
+    `descricao` TEXT NOT NULL,
     `rua` VARCHAR(191) NOT NULL,
     `bairro` VARCHAR(191) NOT NULL,
     `cidade` VARCHAR(191) NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `ImagensOcorrencias` (
 -- CreateTable
 CREATE TABLE `Comentario` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `comentario` VARCHAR(191) NOT NULL,
+    `comentario` TEXT NOT NULL,
     `data` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `ocorrenciaId` INTEGER NOT NULL,
     `usuarioId` INTEGER NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE `Comentario` (
 -- CreateTable
 CREATE TABLE `Mensagem` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `mensagem` VARCHAR(191) NOT NULL,
+    `mensagem` TEXT NOT NULL,
     `data` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `ocorrenciaId` INTEGER NOT NULL,
     `perfil` ENUM('ADMIN', 'FUNCIONARIO', 'USUARIO') NOT NULL,

@@ -32,7 +32,7 @@ const lerMensagens = async (req, res) => {
 
         res.status(200).json({ 
             message: "Mensagens lidas com sucesso!",
-            mensgens: mensagens 
+            mensagens: mensagens 
         });
 
     } catch(error) {

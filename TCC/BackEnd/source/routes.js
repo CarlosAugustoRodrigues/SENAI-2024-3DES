@@ -43,13 +43,13 @@ routes.post(
     "/mensagem/:ocorrenciaId", 
     middleware.validarAcessoUsuario || middleware.validarAcessoFuncionario, 
     mensagemControllers.registrarMensagem
-); // TESTAR
+); // FUNCIONANDO
 
 routes.get(
     "/mensagem/:ocorrenciaId", 
     middleware.validarAcessoUsuario || middleware.validarAcessoFuncionario, 
     mensagemControllers.lerMensagens
-); // TESTAR
+); // FUNCIONANDO
 
 routes.put(
     "/usuario/imagem_perfil/:usuarioId",

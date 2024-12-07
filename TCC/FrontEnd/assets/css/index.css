@@ -10,7 +10,7 @@
 
 :root {
     --black: rgb(0, 0, 0);
-    --black-opacity: rgba(0, 0, 0, .3);
+    --black-opacity: rgba(0, 0, 0, .6);
 
     --lightgray-1: rgb(240, 240, 240);
     --lightgray-1-opacity: rgb(240, 240, 240, .4);

@@ -11,6 +11,18 @@
     <link rel="stylesheet" href="../../css/user/index.css">
 </head>
 <body>
+    <div class="chat" id="chat">
+        <button onclick="closeChat()" class="btn-close-chat"><i class="bi bi-x"></i></button>
+        <div class="div-message" id="div-message">
+        </div>
+
+        <form id="form-message">
+            <input type="text" name="message" id="message" placeholder="Mensagem" required/>
+            <button type="submit">
+                <img src="../../img/enviado.png" alt="Enviar mensagem">
+            </button>
+        </form>
+    </div>
     <div class="menu" id="menu">
         <div>
             <button id="btn-close-menu"><i class="bi bi-x"></i></button>
@@ -24,7 +36,7 @@
                 <li><a href="./regOccurrence.html">Registrar Ocorrência</a></li>
                 <li><a href="#">Minhas Ocorrências</a></li>
                 <li><a href="./myAccount.html">Minha Conta</a></li>
-                <li><a href="../../../index.html"><i class="bi bi-power"></i> Sair</a></li>
+                <li onclick="logout()"><a href="../../../index.html"><i class="bi bi-power"></i> Sair</a></li>
             </ul>
         </nav>
     </div>
@@ -46,27 +58,6 @@
             <h1>Minhas ocorrências</h1>
 
             <div class="div-occurrence" id="div-occurrence">
-                <div class="card-occurrence">
-                    <div class="div-btn">
-                        <button><i class="bi bi-trash-fill"></i></button>
-                        <button><i class="bi bi-chat-right-text-fill"></i></button>
-                    </div>
-                    <div class="img-occurrence"></div>
-                
-                    <div class="info-occurrence">
-                        <div>
-                            <p class="description">${e.descricao}</p>
-                            <p class="address">
-                                <i class="bi bi-geo-alt-fill"></i>
-                                ${e.rua + ' - ' + e.bairro + ' | ' + e.cidade + '/' + e.estado}
-                            </p>    
-                        </div>
-                        <div>
-                            <p class="status">Situação: ${e.status}</p> 
-                            <p class="date">${formatDate(e.data) + ' - ' + formatHours(e.data)}</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
@@ -129,4 +120,5 @@
 </body>
 <script src="../../js/user/myOccurrence.js"></script>
 <script src="../../js/menu/script.js"></script>
+<script src="../../js/index.js"></script>
 </html>

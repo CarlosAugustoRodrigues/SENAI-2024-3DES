@@ -1,4 +1,4 @@
-const URI = 'http://localhost:3000/login/usuario';
+const URI = 'http://localhost:3000/login/funcionario';
 const form = document.querySelector('#form-login');
 
 form.addEventListener('submit', async (e) => {
@@ -20,10 +20,18 @@ form.addEventListener('submit', async (e) => {
 
         if(login.status == 200) {
             const response = await login.json();
-            window.localStorage.setItem('dadosUsuario', JSON.stringify(response));
-
+            window.localStorage.setItem('dadosFuncionario', JSON.stringify(response));
+            const role = JSON.parse(window.localStorage.getItem('dadosFuncionario')).infoConta.role;
+            console.log(role)
             form.reset();
-            window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/user/index.html'    
+
+            if(role != 'ADMIN') {
+                window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/employee/index.html'
+                return
+            }
+
+            window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/admin/index.html'
+              
         } else {
             alert('Email ou senha incorreta.');
         }

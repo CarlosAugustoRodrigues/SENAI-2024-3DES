@@ -13,12 +13,12 @@ const loginUsuario = async (req, res) => {
         });
 
         if(!contaUsuario) {
-            return res.status(400).json({ message: "Erro, usuario não encontrado!" });
+            return res.status(404).json({ message: "Erro, usuario não encontrado!" });
         }
 
         const validarSenha = await bcrypt.compare(password, contaUsuario.password)
         if (!validarSenha) {
-            return res.status(400).json({ message: "Erro, senha incorreta!" });
+            return res.status(401).json({ message: "Erro, senha incorreta!" });
         }
 
         const usuario = await prisma.usuario.findUnique({
@@ -60,12 +60,12 @@ const loginFuncionario = async (req, res) => {
         });
 
         if(!contaFuncionario) {
-            return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
+            return res.status(404).json({ message: "Erro, funcionario não encontrado!" });
         }
 
         const validarSenha = await bcrypt.compare(password, contaFuncionario.password)
         if (!validarSenha) {
-            return res.status(400).json({ message: "Erro, senha incorreta!" });
+            return res.status(401).json({ message: "Erro, senha incorreta!" });
         }
 
         const funcionario = await prisma.funcionario.findUnique({

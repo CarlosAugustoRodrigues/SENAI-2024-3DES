@@ -4,16 +4,24 @@ var occurrenceList = [];
 
 async function fetchOccurrence() {
     occurrenceList = []
-    const fetchResponse = await fetch(URI, {
-        method: 'GET'
-    });
+    try {
+        const fetchResponse = await fetch(URI, {
+            method: 'GET'
+        });
+    
+        if(fetchResponse.status == 200) {
+            const response = await fetchResponse.json();
+            response.ocorrencias.forEach((e) => {
+                occurrenceList.push(e);
+            });
+    
+            renderCardsOccurrence();
+        }
 
-    const response = await fetchResponse.json();
-    response.ocorrencias.forEach((e) => {
-        occurrenceList.push(e);
-    });
+    } catch(error) {
+        console.log('Erro ao carregar ocorrências', error);
+    }
 
-    renderCardsOccurrence();
 }
 
 function renderCardsOccurrence() {

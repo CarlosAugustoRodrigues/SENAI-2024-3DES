@@ -64,7 +64,7 @@ model ContaUsuario {
 // OCORRENCIA, COMENTARIO E MENSAGEM
 model Ocorrencia {
   id Int @id @default(autoincrement())
-  descricao String
+  descricao String @db.Text
   rua String
   bairro String
   cidade String
@@ -95,7 +95,7 @@ model ImagensOcorrencias {
 
 model Comentario {
   id Int @id @default(autoincrement())
-  comentario String
+  comentario String @db.Text
   data DateTime @default(now())
   ocorrenciaId Int
   usuarioId Int
@@ -106,7 +106,7 @@ model Comentario {
 
 model Mensagem {
   id Int @id @default(autoincrement())
-  mensagem String
+  mensagem String @db.Text
   data DateTime @default(now())
   ocorrenciaId Int
   perfil Role

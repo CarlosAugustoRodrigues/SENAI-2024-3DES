@@ -26,11 +26,11 @@ form.addEventListener('submit', async (e) => {
             body: JSON.stringify(data)
         });
     
-        const response = await occurrence.json();
-    
-        form.reset();
-        window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/user/myOccurrences.html'
+        if(occurrence.status == 201) {
+            form.reset();
+            window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/user/myOccurrences.html'
+        }
     } catch(error) {
-        console.error("Error registering occurrence", error);
+        console.error("Erro ao registrar ocorrência", error);
     }
 })

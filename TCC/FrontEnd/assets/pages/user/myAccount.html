@@ -24,7 +24,7 @@
                 <li><a href="./regOccurrence.html">Registrar Ocorrência</a></li>
                 <li><a href="./myOccurrences.html">Minhas Ocorrências</a></li>
                 <li><a href="#">Minha Conta</a></li>
-                <li><a href="../../../index.html"><i class="bi bi-power"></i> Sair</a></li>
+                <li onclick="logout()"><a href="../../../index.html"><i class="bi bi-power"></i> Sair</a></li>
             </ul>
         </nav>
     </div>
@@ -89,14 +89,13 @@
                             </div>
                         </div>
                     </a>
-                    <a href="../../../index.html">
+                    <a href="../../../index.html" onclick="logout()">
                         <div class="card-shortcut-logout">
                             <i class="bi bi-power"></i>
                             <span>Sair</span>
                         </div>
                     </a>
                 </div>
-                
             </div>
             
         </section>
@@ -160,4 +159,5 @@
 </body>
 <script src="../../js/user/myAccount.js"></script>
 <script src="../../js/menu/script.js"></script>
+<script src="../../js/index.js"></script>
 </html>

@@ -4,17 +4,25 @@ var occurrenceList = [];
 
 async function fetchOccurrence() {
     occurrenceList = []
-    const fetchResponse = await fetch(URI, {
-        method: 'GET'
-    });
-
-    const response = await fetchResponse.json();
-    response.ocorrencias.forEach((e) => {
-        occurrenceList.push(e);
-    });
-
-    sortDate();
-    renderCardsOccurrence();
+    
+    try {
+        const fetchResponse = await fetch(URI, {
+            method: 'GET'
+        });
+    
+        if(fetchResponse.status == 200) {
+            const response = await fetchResponse.json();
+            response.ocorrencias.forEach((e) => {
+                occurrenceList.push(e);
+            });
+    
+            sortDate();
+            renderCardsOccurrence();
+        }
+        
+    } catch(error) {
+        console.log('Erro ao comunicar com servidor.', error);
+    }
 }
 
 function renderCardsOccurrence() {

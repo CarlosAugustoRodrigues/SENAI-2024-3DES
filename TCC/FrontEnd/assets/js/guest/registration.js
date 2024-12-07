@@ -20,11 +20,11 @@ form.addEventListener('submit', async (e) => {
             body: JSON.stringify(data)
         });
 
-        form.reset();
-        window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/guest/login.html';
-
-        const response = await registration.json();
-        console.log(response);
+        if(registration.status == 201) {
+            form.reset();
+            window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/guest/login.html';
+        }
+        
     } catch(error) {
         console.error("Erro ao registrar-se!", error)
     }
