@@ -108,6 +108,7 @@ routes.get(
     ocorrenciaControllers.rejeitarOcorrenciaAnalista
 ); // TESTAR
 
+
 // ROTAS QUE ADMIN PODE UTILIZAR
 routes.get(
     "/funcionario", 
@@ -116,7 +117,7 @@ routes.get(
 ); // FUNCIONANDO
 
 routes.post(
-    "/funcionario/registrar", 
+    "/funcionario/registro", 
     middleware.validarAcessoAdmin, 
     funcionarioControllers.registrarFuncionario
 ); // FUNCIONANDO

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionários - SISUR</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/admin/index.css">
+    <link rel="stylesheet" href="../../css/admin/employee.css">
+</head>
+
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="model-password" id="model-password">
+        <button onclick="closeModelChangePassword()" style="cursor: pointer;"><i class="bi bi-x"></i></button>
+        <form id="form-password">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" disabled required />
+            <label for="password">Nova senha</label>
+            <input type="password" id="password" name="password" placeholder="Senha" required />
+            <button type="submit">Alterar senha</button>
+        </form>
+    </div>
+    <div class="menu" id="menu">
+        <div>
+            <button id="btn-close-menu"><i class="bi bi-x"></i></button>
+            <img src="../../img/user.png" class="profile-img-menu">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="./index.html">Página Inicial</a></li>
+                <li><a href="#">Funcionários</a></li>
+                <li><a href="./registerEmployee.html">Registrar Funcionário</a></li>
+                <li><a href="./inactiveOccurrence.html">Ocorrências Inativas</a></li>
+                <li onclick="logout()"><a href="../../../index.html"><i class="bi bi-power"></i> Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header>
+        <img src="../../img/logo.png" class="img">
+
+        <nav>
+            <ul>
+                <li id="btn-menu"><i class="bi bi-list"></i></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Funcionários</h1>
+
+            <div class="div-employee" id="div-employee">
+                <div class="card-employee">
+                    <img src="../../img/user.png">
+
+                    <div class="info-employee">
+                        <p>Nome: <span>${name}</span></p>
+                        <p>Email: <span>${email}</span></p>
+                        <p>Setor: <span>${sector}</span></p>
+                    </div>
+
+                    <div>
+                        <button onclick="openModelChangePassword()">Alterar senha</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-row">
+            <div class="footer-column">
+                <h4>Desenvolvedores</h4>
+                <div class="developer">
+                    <span>
+                        <a href="https://www.github.com/carlosaugustorodrigues" target="_blank">Carlos Augusto
+                            Rodrigues</a>
+                    </span>
+                    <span>
+                        <a href="https://www.github.com/vinimanzano" target="_blank">Vinicius Manzano dos Santos</a>
+                    </span>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Links</h4>
+                <div class="links">
+                    <span><a href="./index.html">Página Inicial</a></span>
+                    <span><a href="#">Funcionários</a></span>
+                    <span><a href="./registerEmployee.html">Registrar Funcionário</a></span>
+                    <span><a href="./inactiveOccurrence.html">Ocorrências Inativas</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="../../js/admin/employee.js"></script>
+<script src="../../js/index.js"></script>
+
+</html>

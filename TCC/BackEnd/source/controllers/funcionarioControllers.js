@@ -5,7 +5,16 @@ const bcrypt = require('bcryptjs');
 const lerFuncionarios = async (req, res) => {
     try {
         const funcionarios = await prisma.funcionario.findMany({
-            include: true
+            where: {
+                infoConta: {
+                    role: {not: 'ADMIN'},
+                }
+            },
+            include: {
+                infoConta: {
+                    email: true,
+                }
+            }
         });
 
         res.status(200).json({
