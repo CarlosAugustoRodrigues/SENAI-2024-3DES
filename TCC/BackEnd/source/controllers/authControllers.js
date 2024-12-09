@@ -88,7 +88,8 @@ const loginFuncionario = async (req, res) => {
                 id: funcionario.id,
                 imagemPerfil: funcionario.imagemPerfil,
                 nome: funcionario.nome,
-                setor: funcionario.setor
+                setor: funcionario.setor,
+                responsabilidade: funcionario.responsabilidade
             },
             token: token
         });

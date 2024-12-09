@@ -22,12 +22,16 @@ form.addEventListener('submit', async (e) => {
             const response = await login.json();
             window.localStorage.setItem('dadosFuncionario', JSON.stringify(response));
             const role = JSON.parse(window.localStorage.getItem('dadosFuncionario')).infoConta.role;
-            console.log(role)
+            const responsability = JSON.parse(window.localStorage.getItem('dadosFuncionario')).funcionario.responsabilidade;
             form.reset();
 
             if(role != 'ADMIN') {
-                window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/employee/index.html'
-                return
+                if(responsability != 'ANALISAR') {
+                    window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/employee/intermediary/index.html'
+                    return;
+                }
+                window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/employee/analyst/index.html'
+                return;
             }
 
             window.location.href = 'http://127.0.0.1:5500/FrontEnd/assets/pages/admin/index.html'

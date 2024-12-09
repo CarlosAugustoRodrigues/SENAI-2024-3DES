@@ -86,11 +86,11 @@ model Ocorrencia {
 
 model ImagensOcorrencias {
   id Int @id @default(autoincrement())
-  urlImagem Bytes?
+  imagem Bytes?
   ocorrenciaId Int?
 
   ocorrencia Ocorrencia? @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
-  @@unique([urlImagem, ocorrenciaId])
+  @@unique([imagem, ocorrenciaId])
 }
 
 model Comentario {

@@ -84,8 +84,9 @@ routes.put(
     ocorrenciaControllers.alterarStatusOcorrenciaIntermediador
 ); // TESTAR
 
+
 routes.get(
-    "/ocorrencia/registrada/setor/:funcionarioId/:setor",
+    "/ocorrencia/registrada/setor/:funcionarioId",
     middleware.validarAcessoFuncionario,
     ocorrenciaControllers.lerOcorrenciaRegistradaSetorAnalista
 ); // TESTAR
@@ -126,12 +127,6 @@ routes.put(
     "/funcionario/alterar_senha/:email", 
     middleware.validarAcessoAdmin, 
     funcionarioControllers.alterarSenha
-); // FUNCIONANDO
-
-routes.get(
-    "/ocorrencia/excluidas", 
-    middleware.validarAcessoAdmin, 
-    ocorrenciaControllers.lerOcorrenciasExcluidas
 ); // FUNCIONANDO
 
 routes.put(

@@ -1,0 +1,154 @@
+.model-occurrence {
+  z-index: 999999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  width: 50%;
+  height: 100%;
+  padding: 50px;
+
+  background: var(--lightgray-2);
+
+  .info-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+  }
+
+  .btn-close-model-occurrence {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    border: none;
+    background: var(--lightgray-2);
+    border-radius: 0 0 0 8px;
+
+    i {
+      color: var(--black);
+    }
+  }
+}
+
+.occurrence {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+
+    .img {
+      width: 255px;
+      height: 255px;
+
+      border-radius: 8px;
+
+      background: var(--lightgray-1);
+    }
+  }
+}
+
+.form-occurrence {
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px;
+
+  gap: 1rem;
+  background: var(--lightgray-1-opacity);
+  border-radius: 8px;
+
+  * {
+    font-family: var(--ff-teko);
+  }
+
+  label {
+    font-size: 1.2rem;
+  }
+
+  .div-main-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .div-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    input,
+    textarea {
+      font-size: 1.2rem;
+      padding: 10px;
+      outline: none;
+      border: none;
+      border-bottom: 2px solid var(--black-opacity);
+
+      background: transparent;
+    }
+
+    :focus {
+      border-left: 2px solid var(--blue);
+      border-color: var(--blue);
+
+      border-radius: 3px;
+    }
+
+    input {
+      width: 100%;
+      height: 35px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 20vh;
+    }
+  }
+
+  .div-btn {
+    display: flex;
+
+    gap: 1rem;
+    width: 100%;
+    margin-top: 2rem;
+
+    button {
+      width: 100%;
+      height: 45px;
+
+      color: var(--black);
+      font-size: 1.5rem;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      background: var(--lightgray-2);
+
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover, .btn-recuse:hover {
+        background: var(--white);
+    }
+  }
+}

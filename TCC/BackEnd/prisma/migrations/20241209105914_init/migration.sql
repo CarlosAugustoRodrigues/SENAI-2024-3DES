@@ -67,10 +67,10 @@ CREATE TABLE `Ocorrencia` (
 -- CreateTable
 CREATE TABLE `ImagensOcorrencias` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `urlImagem` LONGBLOB NULL,
+    `imagem` LONGBLOB NULL,
     `ocorrenciaId` INTEGER NULL,
 
-    UNIQUE INDEX `ImagensOcorrencias_urlImagem_ocorrenciaId_key`(`urlImagem`, `ocorrenciaId`),
+    UNIQUE INDEX `ImagensOcorrencias_imagem_ocorrenciaId_key`(`imagem`, `ocorrenciaId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

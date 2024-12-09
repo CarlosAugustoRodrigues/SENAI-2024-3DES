@@ -32,6 +32,7 @@ async function fetchOccurrence() {
 }
 
 function renderCardsOccurrence() {
+    divOccurrence.innerHTML = '';
     occurrenceList.forEach((e) => {
         const cardOccurrence = document.createElement('div');
         cardOccurrence.setAttribute('data-occurrence', e.id);

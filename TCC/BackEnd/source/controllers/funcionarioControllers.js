@@ -48,7 +48,7 @@ const registrarFuncionario = async (req, res) => {
                 infoConta: {
                     create: {
                         email: email,
-                        assword: await bcrypt.hash(password, 10)
+                        password: await bcrypt.hash(password, 10)
                     }
                 }
             }

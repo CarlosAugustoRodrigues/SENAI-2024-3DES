@@ -9,7 +9,7 @@ form.addEventListener('submit', async (e) => {
     const data = {
         nome: form.name.value,
         setor: form.sector.value,
-        responsabilidade: form.responsability.value,
+        responsabilidade: form.responsibility.value,
         email: form.email.value,
         password: form.password.value
     };
