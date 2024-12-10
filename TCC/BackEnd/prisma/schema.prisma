@@ -86,7 +86,7 @@ model Ocorrencia {
 
 model ImagensOcorrencias {
   id Int @id @default(autoincrement())
-  imagem Bytes?
+  imagem String?
   ocorrenciaId Int?
 
   ocorrencia Ocorrencia? @relation(fields: [ocorrenciaId], references: [id])
