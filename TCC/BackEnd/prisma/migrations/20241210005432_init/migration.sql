@@ -110,7 +110,7 @@ ALTER TABLE `Ocorrencia` ADD CONSTRAINT `Ocorrencia_usuarioId_fkey` FOREIGN KEY 
 ALTER TABLE `Ocorrencia` ADD CONSTRAINT `Ocorrencia_funcionarioId_fkey` FOREIGN KEY (`funcionarioId`) REFERENCES `Funcionario`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ImagensOcorrencias` ADD CONSTRAINT `ImagensOcorrencias_ocorrenciaId_fkey` FOREIGN KEY (`ocorrenciaId`) REFERENCES `Ocorrencia`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `ImagensOcorrencias` ADD CONSTRAINT `ImagensOcorrencias_ocorrenciaId_fkey` FOREIGN KEY (`ocorrenciaId`) REFERENCES `Ocorrencia`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_ocorrenciaId_fkey` FOREIGN KEY (`ocorrenciaId`) REFERENCES `Ocorrencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

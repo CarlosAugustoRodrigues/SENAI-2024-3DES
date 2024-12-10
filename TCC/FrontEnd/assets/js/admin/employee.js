@@ -14,9 +14,9 @@ async function fetchEmployee() {
 
         if(fetchEmployee.status == 200) {
             const response = await fetchEmployee.json();
-
+            console.log(response)
             response.funcionarios.forEach( (e) => {
-                renderEmployee(e.nome, e.infoConta.email, e.setor);
+                renderEmployee(e.nome, e.infoConta[0].email, e.setor);
             });
         }
     } catch(error) {
@@ -38,7 +38,7 @@ function renderEmployee(name, email, sector) {
         </div>
 
         <div>
-            <button onclick="openModelChangePassword(${email})">Alterar senha</button>
+            <button onclick="openModelChangePassword('${email}')">Alterar senha</button>
         </div>
     `
 

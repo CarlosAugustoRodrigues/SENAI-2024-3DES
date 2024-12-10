@@ -89,7 +89,7 @@ model ImagensOcorrencias {
   imagem Bytes?
   ocorrenciaId Int?
 
-  ocorrencia Ocorrencia? @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
+  ocorrencia Ocorrencia? @relation(fields: [ocorrenciaId], references: [id])
   @@unique([imagem, ocorrenciaId])
 }
 
@@ -112,7 +112,7 @@ model Mensagem {
   perfil Role
   responsavel Int
 
-  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id])
+  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
 }
 
 enum Role {

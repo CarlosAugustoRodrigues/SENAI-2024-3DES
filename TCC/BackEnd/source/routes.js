@@ -89,25 +89,25 @@ routes.get(
     "/ocorrencia/registrada/setor/:funcionarioId",
     middleware.validarAcessoFuncionario,
     ocorrenciaControllers.lerOcorrenciaRegistradaSetorAnalista
-); // TESTAR
+); // FUNCIONANDO
 
 routes.put(
     "/ocorrencia/registrada/alterar_infos/:funcionarioId/:ocorrenciaId",
     middleware.validarAcessoFuncionario,
     ocorrenciaControllers.alterarInfoOcorrenciaAnalista
-); // TESTAR
+); // FUNCIONANDO
 
-routes.get(
+routes.put(
     "/ocorrencia/enviar_ocorrencia/:funcionarioId/:ocorrenciaId",
     middleware.validarAcessoFuncionario,
     ocorrenciaControllers.enviarOcorrenciaIntermediador
-); // TESTAR
+); // FUNCIONANDO
 
-routes.get(
+routes.delete(
     "/ocorrencia/rejeitar/:funcionarioId/:ocorrenciaId",
     middleware.validarAcessoFuncionario,
     ocorrenciaControllers.rejeitarOcorrenciaAnalista
-); // TESTAR
+); // FUNCIONANDO
 
 
 // ROTAS QUE ADMIN PODE UTILIZAR

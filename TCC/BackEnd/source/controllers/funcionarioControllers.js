@@ -7,13 +7,13 @@ const lerFuncionarios = async (req, res) => {
         const funcionarios = await prisma.funcionario.findMany({
             where: {
                 infoConta: {
-                    role: {not: 'ADMIN'},
+                    some: {
+                        role: 'FUNCIONARIO',
+                    }
                 }
             },
             include: {
-                infoConta: {
-                    email: true,
-                }
+                infoConta: true
             }
         });
 

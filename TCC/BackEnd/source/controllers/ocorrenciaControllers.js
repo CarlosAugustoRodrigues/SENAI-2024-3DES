@@ -308,6 +308,9 @@ const lerOcorrenciaRegistradaSetorAnalista = async (req, res) => {
                 setor: funcionario.setor,
                 status: "REGISTRADA",
                 ativo: "SIM"
+            },
+            include: {
+                imagens: true
             }
         });
 
@@ -323,7 +326,7 @@ const lerOcorrenciaRegistradaSetorAnalista = async (req, res) => {
 
 const alterarInfoOcorrenciaAnalista = async (req, res) => {
     try {
-        const { descricao, rua, bairro, cidade, cep, setor } = req.body;
+        const { descricao, rua, bairro, cidade, cep } = req.body;
 
         const funcionario = await prisma.funcionario.findUnique({
             where: { id: Number(req.params.funcionarioId) }
@@ -352,8 +355,7 @@ const alterarInfoOcorrenciaAnalista = async (req, res) => {
                 rua: rua,
                 bairro: bairro,
                 cidade: cidade,
-                cep: cep,
-                setor: setor
+                cep: cep
             }
         });
 
