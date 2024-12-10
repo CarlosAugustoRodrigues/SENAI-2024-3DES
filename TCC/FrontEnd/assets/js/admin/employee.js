@@ -4,6 +4,7 @@ const divEmployee = document.querySelector('#div-employee');
 const formPassword = document.querySelector('#form-password');
 
 async function fetchEmployee() {
+    divEmployee.innerHTML = '';
     try {
         const fetchEmployee = await fetch(URI, {
             method: 'GET',
@@ -65,7 +66,7 @@ formPassword.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const data = {
-        senha: formPassword.password.value
+        password: formPassword.password.value
     }
 
     try {

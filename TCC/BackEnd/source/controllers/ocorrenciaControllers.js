@@ -41,7 +41,7 @@ const registrarOcorrencia = async (req, res) => {
                 cidade: cidade.trim(),
                 cep: cep.trim(),
                 setor: setorValidado,
-                usuario: { connect: { id: Number(usuario) } }
+                usuario: { connect: { id: Number(usuario) } },
             }
         });
 

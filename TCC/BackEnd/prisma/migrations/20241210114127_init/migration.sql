@@ -119,4 +119,4 @@ ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_ocorrenciaId_fkey` FOREIGN K
 ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_usuarioId_fkey` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Mensagem` ADD CONSTRAINT `Mensagem_ocorrenciaId_fkey` FOREIGN KEY (`ocorrenciaId`) REFERENCES `Ocorrencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Mensagem` ADD CONSTRAINT `Mensagem_ocorrenciaId_fkey` FOREIGN KEY (`ocorrenciaId`) REFERENCES `Ocorrencia`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

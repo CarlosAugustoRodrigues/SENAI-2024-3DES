@@ -1,11 +1,12 @@
-const funcionarioId = JSON.parse(window.localStorage.getItem('dadosFuncionario')).funcionario.id;
+const employeeId = JSON.parse(window.localStorage.getItem('dadosFuncionario')).funcionario.id;
+const sector = JSON.parse(window.localStorage.getItem('dadosFuncionario')).funcionario.setor;
 const token = JSON.parse(window.localStorage.getItem("dadosFuncionario")).token;
 const form = document.querySelector('#form-occurrence');
 
 async function fetchOccurrence() {
     document.querySelector('#div-occurrence').innerHTML = '';
     try {
-        const fetchOccurrence = await fetch(`http://localhost:3000/ocorrencia/registrada/setor/${funcionarioId}`, {
+        const fetchOccurrence = await fetch(`http://localhost:3000/ocorrencia/registrada/setor/${employeeId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -103,7 +104,7 @@ form.addEventListener('submit', async (e) => {
     const occurrenceId = form.getAttribute('data-occurrence-id');
 
     try {
-        const occurrence = await fetch(`http://localhost:3000/ocorrencia/registrada/alterar_infos/${funcionarioId}/${occurrenceId}`, {
+        const occurrence = await fetch(`http://localhost:3000/ocorrencia/registrada/alterar_infos/${employeeId}/${occurrenceId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -113,7 +114,7 @@ form.addEventListener('submit', async (e) => {
         });
 
         if(occurrence.status === 200) {
-            const sendOccurrence = await fetch(`http://localhost:3000/ocorrencia/enviar_ocorrencia/${funcionarioId}/${occurrenceId}`, {
+            const sendOccurrence = await fetch(`http://localhost:3000/ocorrencia/enviar_ocorrencia/${employeeId}/${occurrenceId}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -134,22 +135,23 @@ async function recuseOccurrence() {
     const idOccurrence = document.querySelector('#form-occurrence').getAttribute('data-occurrence-id');
 
     try {
-        const fetchDelete = await fetch(`http://localhost:3000/ocorrencia/rejeitar/${funcionarioId}/${idOccurrence}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
+        if(confirm('Deseja realmente rejeitar essa ocorrência?')) {
+            const fetchDelete = await fetch(`http://localhost:3000/ocorrencia/rejeitar/${employeeId}/${idOccurrence}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+    
+            if(fetchDelete.status === 200) {
+                alert('Ocorrência rejeitada!');
+                fetchOccurrence();
+                closeModelOccurrence();
             }
-        })
-
-        if(fetchDelete.status === 200) {
-            alert('Ocorrência rejeitada!');
-            fetchOccurrence();
-            closeModelOccurrence();
         }
     } catch(error) {
         console.log('Erro ao rejeitar ocorrência', error)
     }
-    
 }
 
 function formatDate(date) {
@@ -168,5 +170,6 @@ function formatHours(date) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#sector-employee').innerHTML = sector.toLowerCase()
     fetchOccurrence();
 })
