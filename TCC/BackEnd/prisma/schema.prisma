@@ -86,10 +86,10 @@ model Ocorrencia {
 
 model ImagensOcorrencias {
   id Int @id @default(autoincrement())
-  imagem String?
-  ocorrenciaId Int?
+  imagem String
+  ocorrenciaId Int
 
-  ocorrencia Ocorrencia? @relation(fields: [ocorrenciaId], references: [id])
+  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id])
   @@unique([imagem, ocorrenciaId])
 }
 

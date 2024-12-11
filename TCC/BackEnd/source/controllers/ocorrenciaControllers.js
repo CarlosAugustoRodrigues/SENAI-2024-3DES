@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const path = require('path')
 
 const registrarOcorrencia = async (req, res) => {
     try {
@@ -33,6 +34,50 @@ const registrarOcorrencia = async (req, res) => {
             setorValidado = setor.toUpperCase().trim();
         }
 
+        let imagens = [];
+        if (req.files && req.files.images) {
+            const files = req.files.images;
+
+            if (!Array.isArray(files)) {
+                imagens = [files];
+            } else {
+                if (files.length > 3) {
+                    return res.status(400).json({ message: "Você pode enviar no máximo 3 imagens!" });
+                }
+                imagens = files;
+            }
+
+            const imagePaths = [];
+            for (let i = 0; i < imagens.length; i++) {
+                const file = imagens[i];
+                const uploadPath = path.join(__dirname, '../../uploads', Date.now() + '-' + file.name); 
+                await file.mv(uploadPath); 
+                imagePaths.push(file.name); 
+            }
+
+            const novaOcorrencia = await prisma.ocorrencia.create({
+                data: {
+                    descricao: descricao.trim(),
+                    rua: rua.trim(),
+                    bairro: bairro.trim(),
+                    cidade: cidade.trim(),
+                    cep: cep.trim(),
+                    setor: setorValidado,
+                    usuario: { connect: { id: Number(usuario) } },
+                    imagens: {
+                        create: imagePaths.map(imagem => ({
+                            imagem: imagem,
+                        })),
+                    },
+                },
+            });
+
+            return res.status(201).json({
+                message: "Ocorrência registrada com sucesso!",
+                ocorrencia: novaOcorrencia,
+            });
+        }
+
         const novaOcorrencia = await prisma.ocorrencia.create({
             data: {
                 descricao: descricao.trim(),
@@ -42,12 +87,12 @@ const registrarOcorrencia = async (req, res) => {
                 cep: cep.trim(),
                 setor: setorValidado,
                 usuario: { connect: { id: Number(usuario) } },
-            }
+            },
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             message: "Ocorrência registrada com sucesso!",
-            ocorrencia: novaOcorrencia
+            ocorrencia: novaOcorrencia,
         });
 
     } catch (error) {
@@ -59,15 +104,20 @@ const registrarOcorrencia = async (req, res) => {
 const lerOcorrenciaPorUsuario = async (req, res) => {
     try {
         const ocorrencias = await prisma.ocorrencia.findMany({
-            where: { usuarioId: Number(req.params.usuarioId), ativo: "SIM" }
+            where: { 
+                usuarioId: Number(req.params.usuarioId), ativo: "SIM" 
+            },
+            include: {
+                imagens: true
+            }
         });
 
         res.status(200).json({
             message: "Ocorrencias carregadas com sucesso!",
-            ocorrencias: ocorrencias 
+            ocorrencias: ocorrencias
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao buscar ocorrencias!" });
     }
@@ -77,7 +127,7 @@ const lerOcorrencias = async (req, res) => {
     try {
         const ocorrencias = await prisma.ocorrencia.findMany({
             where: {
-                ativo: "SIM", 
+                ativo: "SIM",
                 status: {
                     in: ["APROVADA", "EM_DESENVOLVIMENTO"]
                 }
@@ -89,10 +139,10 @@ const lerOcorrencias = async (req, res) => {
 
         res.status(200).json({
             message: "Ocorrencias carregadas com sucesso!",
-            ocorrencias: ocorrencias 
+            ocorrencias: ocorrencias
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao buscar ocorrencias!" });
     }
@@ -110,9 +160,9 @@ const lerUsuarioPorOcorrencia = async (req, res) => {
 
         res.status(200).json({
             message: "Usuario carregado com sucesso!",
-            usuario: usuario 
+            usuario: usuario
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao buscar usuario!" });
     }
@@ -121,15 +171,15 @@ const lerUsuarioPorOcorrencia = async (req, res) => {
 const lerOcorrenciasEncerradas = async (req, res) => {
     try {
         const ocorrencias = prisma.ocorrencia.findMany({
-            where: {ativo: "SIM", status: "ENCERRADA"}
+            where: { ativo: "SIM", status: "ENCERRADA" }
         });
 
         res.status(200).json({
             message: "Ocorrencias carregadas com sucesso!",
-            ocorrencias: ocorrencias 
+            ocorrencias: ocorrencias
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao buscar ocorrencias!" });
     }
@@ -141,9 +191,9 @@ const excluirOcorrencia = async (req, res) => {
             where: { id: Number(req.params.ocorrenciaId) }
         });
 
-        if(ocorrencia.usuarioId != Number(req.params.usuarioId)) {
-            return res.status(400).json({ 
-                message: "Erro, não é possível excluir ocorrencias de outros usuarios!" 
+        if (ocorrencia.usuarioId != Number(req.params.usuarioId)) {
+            return res.status(400).json({
+                message: "Erro, não é possível excluir ocorrencias de outros usuarios!"
             });
         }
 
@@ -156,7 +206,7 @@ const excluirOcorrencia = async (req, res) => {
 
         res.status(200).json({ message: "Ocorrencia excluída com sucesso!" });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao excluir ocorrencias!" });
     }
@@ -170,18 +220,21 @@ const lerOcorrenciaPorFuncionario = async (req, res) => {
         });
 
         const ocorrencias = await prisma.ocorrencia.findMany({
-            where: { 
-                funcionarioId: funcionario.id, 
+            where: {
+                funcionarioId: funcionario.id,
                 ativo: "SIM",
             },
+            include: {
+                imagens: true
+            }
         });
 
         res.status(200).json({
             message: "Ocorrencias carregadas com sucesso!",
-            ocorrencias: ocorrencias 
+            ocorrencias: ocorrencias
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao buscar ocorrencias!" });
     }
@@ -193,15 +246,18 @@ const lerOcorrenciaPorSetorIntermediador = async (req, res) => {
             where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(funcionario.responsabilidade != "INTERMEDIAR") {
+        if (funcionario.responsabilidade != "INTERMEDIAR") {
             return res.status(400).json({ message: "Erro ao buscar ocorrencias! Não permitido." });
         }
 
         const ocorrencias = await prisma.ocorrencia.findMany({
-            where: { 
+            where: {
                 setor: req.params.setor,
                 status: 'ENVIADA_AO_SETOR',
-                ativo: "SIM" 
+                ativo: "SIM"
+            },
+            include: {
+                imagens: true
             }
         });
 
@@ -210,7 +266,7 @@ const lerOcorrenciaPorSetorIntermediador = async (req, res) => {
             ocorrencias: ocorrencias
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao buscar ocorrencias!" });
     }
@@ -230,11 +286,11 @@ const atribuirOcorrenciaFuncionarioIntermediador = async (req, res) => {
             return res.status(400).json({ message: "Erro ao encontrar funcionario!" });
         }
 
-        if(funcionario.responsabilidade != "INTERMEDIAR") {
+        if (funcionario.responsabilidade != "INTERMEDIAR") {
             return res.status(400).json({ message: "Erro, ação não permitida!" });
         }
 
-        if(!ocorrencia) {
+        if (!ocorrencia) {
             return res.status(400).json({ message: "Erro ao encontrar ocorrencia!" });
         }
 
@@ -245,7 +301,7 @@ const atribuirOcorrenciaFuncionarioIntermediador = async (req, res) => {
             }
         })
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao atribuir ocorrencia!" });
     }
@@ -253,13 +309,13 @@ const atribuirOcorrenciaFuncionarioIntermediador = async (req, res) => {
 
 const alterarStatusOcorrenciaIntermediador = async (req, res) => {
     try {
-        const {status} = req.body;
+        const { status } = req.body;
 
         const funcionario = await prisma.funcionario.findUnique({
             where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(!funcionario) {
+        if (!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
         }
 
@@ -267,11 +323,11 @@ const alterarStatusOcorrenciaIntermediador = async (req, res) => {
             where: { id: Number(req.params.ocorrenciaId) }
         });
 
-        if(!ocorrencia) {
+        if (!ocorrencia) {
             return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
         }
 
-        if(ocorrencia.funcionarioId != Number(req.params.funcionarioId) || funcionario.responsabilidade != "INTERMEDIAR") {
+        if (ocorrencia.funcionarioId != Number(req.params.funcionarioId) || funcionario.responsabilidade != "INTERMEDIAR") {
             return res.status(400).json({ message: "Erro, ação não permitida!" });
         }
 
@@ -283,7 +339,7 @@ const alterarStatusOcorrenciaIntermediador = async (req, res) => {
         });
 
         res.status(200).json({ message: "Status alterado com sucesso!" });
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao alterar status da ocorrencia!" });
     }
@@ -292,14 +348,14 @@ const alterarStatusOcorrenciaIntermediador = async (req, res) => {
 const lerOcorrenciaRegistradaSetorAnalista = async (req, res) => {
     try {
         const funcionario = await prisma.funcionario.findUnique({
-            where : { id: Number(req.params.funcionarioId) }
+            where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(!funcionario) {
+        if (!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
         }
 
-        if(funcionario.responsabilidade != "ANALISAR") {
+        if (funcionario.responsabilidade != "ANALISAR") {
             return res.status(400).json({ message: "Erro, ação não permitida!" });
         }
 
@@ -318,7 +374,7 @@ const lerOcorrenciaRegistradaSetorAnalista = async (req, res) => {
             message: "Ocorrencias carregadas com sucesso",
             ocorrencias: ocorrencias
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao buscar ocorrencia!" });
     }
@@ -332,11 +388,11 @@ const alterarInfoOcorrenciaAnalista = async (req, res) => {
             where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(!funcionario) {
+        if (!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
         }
 
-        if(funcionario.responsabilidade != "ANALISAR") {
+        if (funcionario.responsabilidade != "ANALISAR") {
             return res.status(400).json({ message: "Erro, ação não permitida!" });
         }
 
@@ -344,7 +400,7 @@ const alterarInfoOcorrenciaAnalista = async (req, res) => {
             where: { id: Number(req.params.ocorrenciaId) }
         });
 
-        if(!ocorrencia) {
+        if (!ocorrencia) {
             return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
         }
 
@@ -363,7 +419,7 @@ const alterarInfoOcorrenciaAnalista = async (req, res) => {
             message: "Informações da ocorrencia alterada com sucesso!",
             ocorrencia: ocorrenciaAlterada
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao tentar alterar informações da ocorrencia!" })
     }
@@ -375,11 +431,11 @@ const enviarOcorrenciaIntermediador = async (req, res) => {
             where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(!funcionario) {
+        if (!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
         }
 
-        if(funcionario.responsabilidade != "ANALISAR") {
+        if (funcionario.responsabilidade != "ANALISAR") {
             return res.status(400).json({ message: "Erro, ação não permitida!" });
         }
 
@@ -387,7 +443,7 @@ const enviarOcorrenciaIntermediador = async (req, res) => {
             where: { id: Number(req.params.ocorrenciaId) }
         });
 
-        if(!ocorrencia) {
+        if (!ocorrencia) {
             return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
         }
 
@@ -402,7 +458,7 @@ const enviarOcorrenciaIntermediador = async (req, res) => {
             message: "Ocorrencia enviada para setor responsavel!",
             ocorrencia: ocorrenciaEnviada
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao enviar ocorrencia para funcionario intermediador!" })
     }
@@ -414,11 +470,11 @@ const rejeitarOcorrenciaAnalista = async (req, res) => {
             where: { id: Number(req.params.funcionarioId) }
         });
 
-        if(!funcionario) {
+        if (!funcionario) {
             return res.status(400).json({ message: "Erro, funcionario não encontrado!" });
         }
 
-        if(funcionario.responsabilidade != "ANALISAR") {
+        if (funcionario.responsabilidade != "ANALISAR") {
             return res.status(400).json({ message: "Erro, ação não permitida!" });
         }
 
@@ -426,7 +482,7 @@ const rejeitarOcorrenciaAnalista = async (req, res) => {
             where: { id: Number(req.params.ocorrenciaId) }
         });
 
-        if(!ocorrencia) {
+        if (!ocorrencia) {
             return res.status(400).json({ message: "Erro, ocorrencia não encontrada!" });
         }
 
@@ -437,7 +493,7 @@ const rejeitarOcorrenciaAnalista = async (req, res) => {
         res.status(200).json({
             message: "Ocorrencia excluida!",
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao excluir ocorrencia!" })
     }
