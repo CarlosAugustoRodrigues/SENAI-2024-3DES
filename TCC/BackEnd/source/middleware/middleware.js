@@ -61,7 +61,30 @@ const validarAcessoUsuario = (req, res, next) => {
     });
 }
 
+const validarAcesso = (roles) => {
+  return (req, res, next) => {
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(403).json({ message: "Token de autenticação ausente!" });
+    }
+
+    const tokenString = token.replace("Bearer ", "");
+
+    jwt.verify(tokenString, process.env.SECRET_KEY, (err, data) => {
+      if (err) return res.status(401).json({ message: "Token inválido ou expirado!" });
+
+      if (!roles.includes(data.role)) {
+        return res.status(403).json({ message: "Acesso negado!" });
+      }
+
+      next();
+    });
+  };
+};
+
 module.exports = {
+    validarAcesso,
     validarAcessoAdmin,
     validarAcessoFuncionario,
     validarAcessoUsuario

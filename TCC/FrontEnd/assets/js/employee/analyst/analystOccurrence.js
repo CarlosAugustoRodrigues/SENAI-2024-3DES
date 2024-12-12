@@ -13,35 +13,37 @@ async function fetchOccurrence() {
             }
         });
 
-        if(fetchOccurrence.status == 200) {
+        if (fetchOccurrence.status == 200) {
             const response = await fetchOccurrence.json();
 
             response.ocorrencias.forEach((e) => {
+
                 renderOccurrence(
-                    e.id, 
-                    e.descricao, 
-                    e.rua, 
+                    e.id,
+                    e.descricao,
+                    e.rua,
                     e.bairro,
                     e.cidade,
                     e.estado,
                     e.cep,
-                    e.data
+                    e.data,
+                    e.imagens[0].imagem
                 )
             });
         }
-    } catch(error) {
+    } catch (error) {
         console.log('Erro ao buscar ocorrências', error);
     }
-    
+
 }
 
-function renderOccurrence(id, descricao, rua, bairro, cidade, estado, cep, data) {
+function renderOccurrence(id, descricao, rua, bairro, cidade, estado, cep, data, imagem) {
     const cardOccurrence = document.createElement('div');
     cardOccurrence.setAttribute('data-occurrence', id);
     cardOccurrence.classList.add('card-occurrence');
 
     cardOccurrence.innerHTML = `
-        <div class="img-occurrence"></div>
+        <div class="img-occurrence" style="background-image: url(http://localhost:3000/uploads/${imagem});" ></div>
 
         <div class="info-occurrence">
           <div>
@@ -54,8 +56,10 @@ function renderOccurrence(id, descricao, rua, bairro, cidade, estado, cep, data)
           <div>
             <div>
               <p class="date">${formatDate(data) + ' - ' + formatHours(data)}</p>
-              <button id="btn-trash" class="btn-trash" onclick="openModelOccurrence('${descricao}', '${rua}', '${bairro}', '${cidade}', '${cep}', ${id})">Analisar ocorrência</button>
-            </div>
+                <button id="btn-trash" class="btn-trash" 
+                  onclick="openModelOccurrence('${descricao}', '${rua}', '${bairro}', '${cidade}', '${cep}', ${id})">
+                  Analisar ocorrência
+                </button>            </div>
           </div>
         </div>
     `
@@ -63,7 +67,27 @@ function renderOccurrence(id, descricao, rua, bairro, cidade, estado, cep, data)
     document.querySelector('#div-occurrence').appendChild(cardOccurrence);
 }
 
-function openModelOccurrence(descricao, rua, bairro, cidade, cep, id) {
+async function openModelOccurrence(descricao, rua, bairro, cidade, cep, id) {
+
+    const response = await fetch(`http://localhost:3000/usuario/ocorrencia/${id}`, {
+        method: 'GET'
+    });
+
+    const user = await response.json();
+    
+    const responseImage = await fetch(`http://localhost:3000/imagens/ocorrencia/${id}`);
+    const images = await responseImage.json();
+
+    images.forEach((e) => {
+        const img = document.createElement('div');
+        img.classList.add('img-occurrence');
+        img.setAttribute('style', `background-image: url(http://localhost:3000/uploads/${e.imagem});`)
+    
+        document.querySelector('#div-images').appendChild(img);
+    })
+
+    document.querySelector('#username').innerHTML = `${user.usuario.nome}`;
+
     document.querySelector('#overlay').classList.add('show-overlay');
     setTimeout(() => {
         document.querySelector('#model-occurrence').classList.add('show');
@@ -80,6 +104,7 @@ function openModelOccurrence(descricao, rua, bairro, cidade, cep, id) {
 }
 
 function closeModelOccurrence() {
+    document.querySelector('#div-images').innerHTML = '';
     const form = document.querySelector('#form-occurrence');
     form.setAttribute('data-occurrence-id', null);
     form.reset();
@@ -109,11 +134,11 @@ form.addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
-            }, 
+            },
             body: JSON.stringify(data)
         });
 
-        if(occurrence.status === 200) {
+        if (occurrence.status === 200) {
             const sendOccurrence = await fetch(`http://localhost:3000/ocorrencia/enviar_ocorrencia/${employeeId}/${occurrenceId}`, {
                 method: 'PUT',
                 headers: {
@@ -121,35 +146,35 @@ form.addEventListener('submit', async (e) => {
                 }
             });
 
-            if(sendOccurrence.status === 200) {
+            if (sendOccurrence.status === 200) {
                 closeModelOccurrence();
                 fetchOccurrence();
             }
         }
-    } catch(error) {
+    } catch (error) {
         console.log('Erro ao atualizar ocorrência e enviar para o setor responsável', error)
     }
 })
 
 async function recuseOccurrence() {
-    const idOccurrence = document.querySelector('#form-occurrence').getAttribute('data-occurrence-id');
+    const occurrenceId = document.querySelector('#form-occurrence').getAttribute('data-occurrence-id');
 
     try {
-        if(confirm('Deseja realmente rejeitar essa ocorrência?')) {
-            const fetchDelete = await fetch(`http://localhost:3000/ocorrencia/rejeitar/${employeeId}/${idOccurrence}`, {
+        if (confirm('Deseja realmente rejeitar essa ocorrência?')) {
+            const fetchDelete = await fetch(`http://localhost:3000/ocorrencia/rejeitar/${employeeId}/${occurrenceId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             })
-    
-            if(fetchDelete.status === 200) {
+
+            if (fetchDelete.status === 200) {
                 alert('Ocorrência rejeitada!');
                 fetchOccurrence();
                 closeModelOccurrence();
             }
         }
-    } catch(error) {
+    } catch (error) {
         console.log('Erro ao rejeitar ocorrência', error)
     }
 }

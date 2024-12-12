@@ -1,0 +1,317 @@
+.model-occurrence {
+    z-index: 999999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    transform: translate(200%);
+
+    width: 50%;
+    height: 100%;
+    padding: 50px;
+
+    background: var(--lightgray-2);
+
+    transition: .3s;
+
+    .info-user {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+    }
+
+    .btn-close-model-occurrence {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: -50px;
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+        border: none;
+        background: var(--lightgray-2);
+        border-radius: 0 0 0 8px;
+
+        i {
+            color: var(--black);
+        }
+    }
+}
+
+.occurrence {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    .btn-assign {
+        width: 100%;
+        height: 45px;
+
+        font-size: 1.4rem;
+        font-family: var(--ff-teko);
+        font-weight: 500;
+
+        background: var(--lightgray-1);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .btn-assign:hover {
+        color: var(--white);
+        background: var(--black-opacity);
+    }
+
+    .div-images {
+        display: flex;
+        justify-content: flex-start;
+        gap: .7rem;
+
+        .img-occurrence {
+            height: 280px;
+            width: 280px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+    }
+
+    .info-occurrence {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background: var(--lightgray-1-opacity);
+        padding: 20px;
+        border-radius: 8px;
+
+        font-size: 1.2rem;
+
+        > div:first-child {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            width: 100%;
+            height: auto;
+            min-height: 22vh;
+
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--black-opacity-2);
+
+            span {
+                color: var(--blue);
+                font-size: 1.4rem;
+                font-weight: 500;
+            }
+
+            p {
+                max-width: fit-content;
+                word-break: break-word;
+            }
+        }
+
+        > div:last-child {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+                width: 100%;
+                padding: 10px;
+
+                border-radius: 8px;
+                background: var(--black-opacity-2);
+
+                span {
+                    color: var(--blue);
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+.model-occurrence.show {
+    transform: translate(0);
+}
+
+main {
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 3rem;
+
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+
+            letter-spacing: 0.3rem;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+
+            height: 5px;
+            width: 160px;
+
+            background: var(--gradient-1);
+        }
+    }
+}
+
+.div-occurrence {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 8.5rem;
+    row-gap: 2rem;
+}
+
+.card-occurrence {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 700px;
+    height: 35vh;
+    padding: 25px 15px;
+
+    border-bottom: 3px solid transparent;
+    border-image: var(--gradient-3);
+    border-image-slice: 1;
+
+    .img-occurrence {
+        height: 280px;
+        width: 280px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+    }
+
+    .info-occurrence {
+        color: var(--black);
+        width: 370px;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        >div {
+            display: flex;
+            flex-direction: column;
+
+            gap: 0.7rem;
+            width: 100%;
+
+            p {
+                font-size: 1.2rem;
+                text-align: justify;
+                max-width: fit-content;
+                word-break: break-all;
+            }
+        }
+
+        >div:first-child {
+            p:first-child {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+            }
+
+            p:last-child {
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+            }
+        }
+
+        >div:last-child {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 0;
+
+            div {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                button {
+                    width: 100%;
+                    height: 35px;
+
+                    color: var(--black);
+                    font-size: 1.5rem;
+                    font-family: var(--ff-teko);
+                    border: none;
+                    border-radius: 8px;
+
+                    cursor: pointer;
+
+                    background: var(--lightgray-2);
+
+                    transition: 0.3s;
+                }
+
+                button:hover {
+                    background: var(--blue);
+                    color: var(--white);
+                }
+            }
+        }
+    }
+
+    i {
+        color: var(--red);
+    }
+}
+
+.div-btn button:first-child:hover i {
+    color: var(--red);
+}
+
+.div-btn button:last-child:hover i {
+    color: var(--blue);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    transition: .3s;
+
+    background-color: var(--black-opacity);
+}
+
+.overlay.show-overlay {
+    width: 100%;
+}

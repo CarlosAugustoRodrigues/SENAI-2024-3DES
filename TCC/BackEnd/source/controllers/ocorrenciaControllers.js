@@ -50,9 +50,10 @@ const registrarOcorrencia = async (req, res) => {
             const imagePaths = [];
             for (let i = 0; i < imagens.length; i++) {
                 const file = imagens[i];
-                const uploadPath = path.join(__dirname, '../../uploads', Date.now() + '-' + file.name); 
+                const fileName = Date.now() + '-' + file.name;
+                const uploadPath = path.join(__dirname, '../../uploads', fileName); 
                 await file.mv(uploadPath); 
-                imagePaths.push(file.name); 
+                imagePaths.push(fileName); 
             }
 
             const novaOcorrencia = await prisma.ocorrencia.create({
@@ -253,6 +254,7 @@ const lerOcorrenciaPorSetorIntermediador = async (req, res) => {
         const ocorrencias = await prisma.ocorrencia.findMany({
             where: {
                 setor: req.params.setor,
+                funcionarioId: null,
                 status: 'ENVIADA_AO_SETOR',
                 ativo: "SIM"
             },
@@ -300,7 +302,7 @@ const atribuirOcorrenciaFuncionarioIntermediador = async (req, res) => {
                 funcionarioId: funcionario.id
             }
         })
-
+        return res.status(200).json({ message: "Ocorrencia atribuida com sucesso!" });
     } catch (error) {
         console.error(error);
         res.status(400).json({ message: "Erro ao atribuir ocorrencia!" });
@@ -499,6 +501,19 @@ const rejeitarOcorrenciaAnalista = async (req, res) => {
     }
 }
 
+const lerImagens = async (req, res) => {
+    try {
+        const imagens = await prisma.imagensOcorrencias.findMany({
+            where: { ocorrenciaId: Number(req.params.ocorrenciaId) }
+        })
+
+        res.status(200).json(imagens);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ message: "Erro ao buscar imagens!" })
+    }
+}
+
 module.exports = {
     registrarOcorrencia,
     lerOcorrenciaPorUsuario,
@@ -515,5 +530,7 @@ module.exports = {
     lerOcorrenciaRegistradaSetorAnalista,
     alterarInfoOcorrenciaAnalista,
     enviarOcorrenciaIntermediador,
-    rejeitarOcorrenciaAnalista
+    rejeitarOcorrenciaAnalista,
+
+    lerImagens
 }

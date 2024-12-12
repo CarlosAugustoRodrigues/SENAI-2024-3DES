@@ -49,8 +49,9 @@ main {
   .img-occurrence {
     height: 280px;
     width: 280px;
-    background: var(--gray-1);
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
   }
 
@@ -64,7 +65,7 @@ main {
     justify-content: space-between;
     align-items: flex-start;
 
-    > div {
+    >div {
       display: flex;
       flex-direction: column;
 
@@ -79,23 +80,23 @@ main {
       }
     }
 
-    > div:first-child {
+    >div:first-child {
       p:first-child {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         overflow: hidden;
         -webkit-box-orient: vertical;
       }
-      
+
       p:last-child {
         display: -webkit-box;
         -webkit-line-clamp: 1;
         overflow: hidden;
         -webkit-box-orient: vertical;
-    }
+      }
     }
 
-    > div:last-child {
+    >div:last-child {
       display: flex;
       gap: 0;
     }

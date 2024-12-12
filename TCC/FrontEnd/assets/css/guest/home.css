@@ -48,10 +48,11 @@ main {
     border-image-slice: 1;
 
     .img-occurrence {
-        height: 220px;
-        width: 220px;
-        background: var(--gray-1);
-
+        height: 280px;
+        width: 280px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
         border-radius: 10px;
     }
 

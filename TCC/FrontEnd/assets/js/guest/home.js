@@ -34,7 +34,7 @@ function renderCardsOccurrence() {
         cardOccurrence.classList.add('card-occurrence');
 
         cardOccurrence.innerHTML = `
-            <div class="img-occurrence"></div>
+            <div class="img-occurrence" style="background-image: url(http://localhost:3000/uploads/${e.imagens[0].imagem});" ></div>
         
             <div class="info-occurrence">
                 <div>

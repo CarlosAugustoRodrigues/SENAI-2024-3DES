@@ -80,8 +80,8 @@ model Ocorrencia {
   mensagem Mensagem[]
   imagens ImagensOcorrencias[]
 
-  usuario Usuario @relation(fields: [usuarioId], references: [id])
-  funcionario Funcionario? @relation(fields: [funcionarioId], references: [id])
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  funcionario Funcionario? @relation(fields: [funcionarioId], references: [id], onDelete: Cascade)
 }
 
 model ImagensOcorrencias {
@@ -89,7 +89,7 @@ model ImagensOcorrencias {
   imagem String
   ocorrenciaId Int
 
-  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id])
+  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
   @@unique([imagem, ocorrenciaId])
 }
 
@@ -100,7 +100,7 @@ model Comentario {
   ocorrenciaId Int
   usuarioId Int
 
-  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id])
+  ocorrencia Ocorrencia @relation(fields: [ocorrenciaId], references: [id], onDelete: Cascade)
   usuario Usuario @relation(fields: [usuarioId], references: [id])
 }
 

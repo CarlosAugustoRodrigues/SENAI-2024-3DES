@@ -40,13 +40,13 @@ routes.post(
 
 routes.post(
   "/mensagem/:ocorrenciaId",
-  middleware.validarAcessoUsuario || middleware.validarAcessoFuncionario,
+  middleware.validarAcesso(['FUNCIONARIO', 'USUARIO']),
   mensagemControllers.registrarMensagem
 ); // FUNCIONANDO
 
 routes.get(
   "/mensagem/:ocorrenciaId",
-  middleware.validarAcessoUsuario || middleware.validarAcessoFuncionario,
+  middleware.validarAcesso(['FUNCIONARIO', 'USUARIO']),
   mensagemControllers.lerMensagens
 ); // FUNCIONANDO
 
@@ -55,6 +55,7 @@ routes.put(
   middleware.validarAcessoFuncionario,
   usuarioControllers.imagemPerfil
 ); // TESTAR
+
 
 // ROTAS QUE FUNCIONARIOS PODEM UTILIZAR
 routes.get(
@@ -67,19 +68,20 @@ routes.get(
   "/ocorrencia/setor/:funcionarioId/:setor",
   middleware.validarAcessoFuncionario,
   ocorrenciaControllers.lerOcorrenciaPorSetorIntermediador
-); // TESTAR
+); // FUNCIONANDO
 
 routes.put(
   "/ocorrencia/atribuir/:funcionarioId/:ocorrenciaId",
   middleware.validarAcessoFuncionario,
   ocorrenciaControllers.atribuirOcorrenciaFuncionarioIntermediador
-); // TESTAR
+); // FUNCIONANDO
 
 routes.put(
   "/ocorrencia/alterar_status/:funcionarioId/:ocorrenciaId",
   middleware.validarAcessoFuncionario,
   ocorrenciaControllers.alterarStatusOcorrenciaIntermediador
 ); // TESTAR
+
 
 routes.get(
   "/ocorrencia/registrada/setor/:funcionarioId",
@@ -140,6 +142,8 @@ routes.put("/usuario/alterar_senha/:email", usuarioControllers.alterarSenha); //
 routes.post("/login/funcionario", authControllers.loginFuncionario); // FUNCIONANDO
 
 routes.get("/ocorrencia", ocorrenciaControllers.lerOcorrencias); // FUNCIONANDO
+
+routes.get("/imagens/ocorrencia/:ocorrenciaId", ocorrenciaControllers.lerImagens); // FUNCIONANDO
 
 routes.get(
   "/usuario/ocorrencia/:ocorrenciaId",

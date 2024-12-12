@@ -49,10 +49,12 @@ main {
   .img-occurrence {
     height: 280px;
     width: 280px;
-    background: var(--gray-1);
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
   }
+
 
   .info-occurrence {
     color: var(--black);

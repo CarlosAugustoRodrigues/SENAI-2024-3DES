@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - SISUR</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../../css/employee/intermediary/occurrenceEmployee.css">
+    <link rel="stylesheet" href="../../../css/employee/intermediary/index.css">
+</head>
+
+<body>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="chat" id="chat">
+        <button onclick="closeChat()" class="btn-close-chat"><i class="bi bi-x"></i></button>
+        <div class="div-message" id="div-message">
+        </div>
+
+        <form id="form-message">
+            <input type="text" name="message" id="message" placeholder="Mensagem" required/>
+            <button type="submit">
+                <img src="../../../img/enviado.png" alt="Enviar mensagem">
+            </button>
+        </form>
+    </div>
+    <div class="model-occurrence" id="model-occurrence">
+        <button onclick="closeModelOccurrence()" class="btn-close-model-occurrence">
+            <i class="bi bi-x"></i>
+        </button>
+        <div class="info-user">
+            <img src="../../../img/user.png" />
+            <p id="username"></p>
+        </div>
+
+        <div class="occurrence" id="occurrence">
+            <div class="div-images" id="div-images"></div>
+
+            <div class="info-occurrence">
+                <div>
+                    <span>Descrição</span>
+                    <p id="description"></p>
+                </div>
+                <div>
+                    <div>
+                        <span>Rua</span>
+                        <p id="street"></p>
+                    </div>
+                    <div>
+                        <span>Bairro</span>
+                        <p id="district"></p>
+                    </div>
+                    <div>
+                        <span>Cidade</span>
+                        <p id="city"></p>
+                    </div>
+                    <div>
+                        <span>CEP</span>
+                        <p id="cep"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu" id="menu">
+        <div>
+            <button id="btn-close-menu"><i class="bi bi-x"></i></button>
+            <img src="../../../img/user.png" class="profile-img-menu">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="./index.html">Página Inicial</a></li>
+                <li><a href="./occurrenceSector.html">Ocorrências do Setor</a></li>
+                <li><a href="#">Ocorrências Atribuídas</a></li>
+                <li onclick="logout()"><a href="../../../../index.html"><i class="bi bi-power"></i> Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header>
+        <img src="../../../img/logo.png" class="img">
+
+        <nav>
+            <ul>
+                <li id="btn-menu"><i class="bi bi-list"></i></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <h1>Ocorrências Atribuidas<span id="sector-employee"></span></h1>
+            <div class="div-occurrence" id="div-occurrence"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-row">
+            <div class="footer-column">
+                <h4>Desenvolvedores</h4>
+                <div class="developer">
+                    <span>
+                        <a href="https://www.github.com/carlosaugustorodrigues" target="_blank">Carlos Augusto
+                            Rodrigues</a>
+                    </span>
+                    <span>
+                        <a href="https://www.github.com/vinimanzano" target="_blank">Vinicius Manzano dos Santos</a>
+                    </span>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Links</h4>
+                <div class="links">
+                    <span><a href="./index.html">Página Inicial</a></span>
+                    <span><a href="./occurrenceSector.html">Ocorrências do Setor</a></span>
+                    <span><a href="#">Ocorrências Atribuídas</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="../../../js/index.js"></script>
+<script src="../../../js/employee/intermediary/occurrenceEmployee.js"></script>
+
+</html>

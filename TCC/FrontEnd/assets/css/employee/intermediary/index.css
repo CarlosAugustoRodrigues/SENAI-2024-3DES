@@ -1,0 +1,116 @@
+header {
+    nav {
+        ul {
+            li {
+                cursor: pointer;
+                font-size: 2rem;
+                color: var(--black);
+            }
+        }
+    }
+}
+
+.menu {
+    transition: .3s;
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20vw;
+    height: 100%;
+    padding: 25px 35px;
+    transform: translateX(100%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 3rem;
+
+    background: var(--lightgray-2);
+
+    div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .profile-img-menu {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        button {
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+
+            font-size: 3rem;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: .3s;
+        }
+    }
+
+    nav {
+        height: auto;
+        text-align: right;
+
+        ul {
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+
+            gap: .7rem;
+
+            li {
+                position: relative;
+                a {
+                    transition: .3s;
+                    color: var(--black);
+                }
+            }
+
+            :not(:last-child)::after {
+                transition: .3s;
+                content: '';
+                display: block;
+                position: absolute;
+                right: 0;
+
+                width: 0;
+                height: 2px;
+
+                background: var(--gradient-1);
+            }
+
+            :hover::after {
+                width: 30%;
+            }
+
+            :last-child a:hover {
+                color: var(--red);
+            }
+        }
+    }
+}
+
+.menu.show-menu {
+    transform: translateX(0);
+}
+
+body.block {
+    overflow: hidden;
+}
+
+footer {
+    .footer-column:last-child {
+        width: 150px !important;
+    }
+}

@@ -1,11 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intermediario</title>
+    <title>Home - SISUR</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../../css/employee/intermediary/home.css">
+    <link rel="stylesheet" href="../../../css/employee/intermediary/index.css">
 </head>
 <body>
+    <div class="menu" id="menu">
+        <div>
+            <button id="btn-close-menu"><i class="bi bi-x"></i></button>
+            <img src="../../../img/user.png" class="profile-img-menu">
+        </div>
+
+        <nav> 
+            <ul>
+                <li><a href="#">Página Inicial</a></li>
+                <li><a href="./occurrenceSector.html">Ocorrências do Setor</a></li>
+                <li><a href="./occurrenceEmployee.html">Ocorrências Atribuídas</a></li>
+                <li onclick="logout()"><a href="../../../../index.html"><i class="bi bi-power"></i> Sair</a></li>
+            </ul>
+        </nav>
+    </div>
     
+    <header>
+        <img src="../../../img/logo.png" class="img">
+
+        <nav>
+            <ul>
+                <li id="btn-menu"><i class="bi bi-list"></i></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <div class="info-employee">
+                <h1>Olá,<br><span id="employeename"></span></h1>
+                <div>
+                    <p>Email: <span id="employeeemail"></span></p>
+                    <p>Setor: <span id="employeesector"></span></p>
+                </div>
+            </div>
+            <div class="div-shortcut">
+                <div>
+                    <img src="../../../img/command.png" alt="img-shortcut">
+                    <h2>Atalhos</h2>
+                </div>
+
+                <div>
+                    <a href="./occurrenceSector.html">
+                        <div class="card-shortcut">
+                            <div>
+                                <h2>Ocorrências do Setor</h2>
+                                <p>Veja todas as ocorrências do setor, e atribua uma das ocorrências para seguir com o processo.</p>
+                            </div>
+                            
+                        </div>
+                    </a>
+                    <a href="./occurrenceEmployee.html">
+                        <div class="card-shortcut">
+                            <div>
+                                <h2>Ocorrências Atribuídas</h2>
+                                <p>Veja todas as ocorrências que estão atribuídas à você, comunique-se com os cidadãos e modifique a situação das ocorrências.</p>
+                            </div>
+                            
+                        </div>
+                    </a>
+                    <a href="../../../../index.html" onclick="logout()">
+                        <div class="card-shortcut-logout">
+                            <i class="bi bi-power"></i>
+                            <span>Sair</span>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-row">
+            <div class="footer-column">
+                <h4>Desenvolvedores</h4>
+                <div class="developer">
+                    <span>
+                        <a href="https://www.github.com/carlosaugustorodrigues" target="_blank">Carlos Augusto Rodrigues</a>
+                    </span>
+                    <span>
+                        <a href="https://www.github.com/vinimanzano" target="_blank">Vinicius Manzano dos Santos</a>
+                    </span>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Links</h4>
+                <div class="links">
+                    <span><a href="#">Página Inicial</a></span>
+                    <span><a href="./occurrenceSector.html">Ocorrências do Setor</a></span>
+                    <span><a href="./occurrenceEmployee.html">Ocorrências Atribuídas</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
+<script src="../../../js/index.js"></script>
+<script src="../../../js/employee/intermediary/home.js"></script>
 </html>

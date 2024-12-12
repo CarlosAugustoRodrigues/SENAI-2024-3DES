@@ -56,15 +56,16 @@
 
   >div {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: .7rem;
 
-    .img {
-      width: 255px;
-      height: 255px;
-
-      border-radius: 8px;
-
-      background: var(--lightgray-1);
+    .img-occurrence {
+      height: 280px;
+      width: 280px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
     }
   }
 }
@@ -213,8 +214,9 @@ main {
   .img-occurrence {
     height: 280px;
     width: 280px;
-    background: var(--gray-1);
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
   }
 
